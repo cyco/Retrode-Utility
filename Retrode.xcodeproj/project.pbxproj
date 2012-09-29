@@ -7,15 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		830C011716172907007BEF28 /* NSString+NSRangeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 830C011616172907007BEF28 /* NSString+NSRangeAdditions.m */; };
+		830C011A16173C57007BEF28 /* REFirmwareUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 830C011916173C57007BEF28 /* REFirmwareUpdater.m */; };
+		8356A2C41616603900377E4B /* DiskArbitration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8356A2C31616603900377E4B /* DiskArbitration.framework */; };
 		8375A20D1615DB4A004FA5AE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8375A20C1615DB4A004FA5AE /* Cocoa.framework */; };
 		8375A2171615DB4A004FA5AE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8375A2151615DB4A004FA5AE /* InfoPlist.strings */; };
 		8375A2191615DB4A004FA5AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375A2181615DB4A004FA5AE /* main.m */; };
 		8375A21D1615DB4A004FA5AE /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8375A21B1615DB4A004FA5AE /* Credits.rtf */; };
 		8375A2201615DB4A004FA5AE /* REAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375A21F1615DB4A004FA5AE /* REAppDelegate.m */; };
 		8375A2231615DB4A004FA5AE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8375A2211615DB4A004FA5AE /* MainMenu.xib */; };
+		8375A22B1615DB60004FA5AE /* RERetrodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375A22A1615DB60004FA5AE /* RERetrodeManager.m */; };
+		8375A22E1615DB8C004FA5AE /* RERetrode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375A22D1615DB8C004FA5AE /* RERetrode.m */; };
+		8375A2341615E09E004FA5AE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8375A2331615E09E004FA5AE /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		830C010E16171D90007BEF28 /* RERetrode_Configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RERetrode_Configuration.h; sourceTree = "<group>"; };
+		830C011516172907007BEF28 /* NSString+NSRangeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSRangeAdditions.h"; sourceTree = "<group>"; };
+		830C011616172907007BEF28 /* NSString+NSRangeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSRangeAdditions.m"; sourceTree = "<group>"; };
+		830C011816173C57007BEF28 /* REFirmwareUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REFirmwareUpdater.h; sourceTree = "<group>"; };
+		830C011916173C57007BEF28 /* REFirmwareUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REFirmwareUpdater.m; sourceTree = "<group>"; };
+		8356A2C116164B9000377E4B /* RERetrode_IOLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RERetrode_IOLevel.h; sourceTree = "<group>"; };
+		8356A2C31616603900377E4B /* DiskArbitration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiskArbitration.framework; path = System/Library/Frameworks/DiskArbitration.framework; sourceTree = SDKROOT; };
 		8375A2081615DB4A004FA5AE /* Retrode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Retrode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8375A20C1615DB4A004FA5AE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8375A20F1615DB4A004FA5AE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -29,6 +42,11 @@
 		8375A21E1615DB4A004FA5AE /* REAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = REAppDelegate.h; sourceTree = "<group>"; };
 		8375A21F1615DB4A004FA5AE /* REAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = REAppDelegate.m; sourceTree = "<group>"; };
 		8375A2221615DB4A004FA5AE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		8375A2291615DB60004FA5AE /* RERetrodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RERetrodeManager.h; sourceTree = "<group>"; };
+		8375A22A1615DB60004FA5AE /* RERetrodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RERetrodeManager.m; sourceTree = "<group>"; };
+		8375A22C1615DB8C004FA5AE /* RERetrode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RERetrode.h; sourceTree = "<group>"; };
+		8375A22D1615DB8C004FA5AE /* RERetrode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RERetrode.m; sourceTree = "<group>"; };
+		8375A2331615E09E004FA5AE /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8356A2C41616603900377E4B /* DiskArbitration.framework in Frameworks */,
+				8375A2341615E09E004FA5AE /* IOKit.framework in Frameworks */,
 				8375A20D1615DB4A004FA5AE /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,6 +63,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		830C0114161728F8007BEF28 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				830C011516172907007BEF28 /* NSString+NSRangeAdditions.h */,
+				830C011616172907007BEF28 /* NSString+NSRangeAdditions.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		8375A1FD1615DB4A004FA5AE = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +92,8 @@
 		8375A20B1615DB4A004FA5AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8356A2C31616603900377E4B /* DiskArbitration.framework */,
+				8375A2331615E09E004FA5AE /* IOKit.framework */,
 				8375A20C1615DB4A004FA5AE /* Cocoa.framework */,
 				8375A20E1615DB4A004FA5AE /* Other Frameworks */,
 			);
@@ -82,10 +113,19 @@
 		8375A2121615DB4A004FA5AE /* Retrode */ = {
 			isa = PBXGroup;
 			children = (
+				830C0114161728F8007BEF28 /* Utilities */,
 				8375A21E1615DB4A004FA5AE /* REAppDelegate.h */,
 				8375A21F1615DB4A004FA5AE /* REAppDelegate.m */,
 				8375A2211615DB4A004FA5AE /* MainMenu.xib */,
 				8375A2131615DB4A004FA5AE /* Supporting Files */,
+				8375A22C1615DB8C004FA5AE /* RERetrode.h */,
+				8375A22D1615DB8C004FA5AE /* RERetrode.m */,
+				8356A2C116164B9000377E4B /* RERetrode_IOLevel.h */,
+				830C010E16171D90007BEF28 /* RERetrode_Configuration.h */,
+				8375A2291615DB60004FA5AE /* RERetrodeManager.h */,
+				8375A22A1615DB60004FA5AE /* RERetrodeManager.m */,
+				830C011816173C57007BEF28 /* REFirmwareUpdater.h */,
+				830C011916173C57007BEF28 /* REFirmwareUpdater.m */,
 			);
 			path = Retrode;
 			sourceTree = "<group>";
@@ -169,6 +209,10 @@
 			files = (
 				8375A2191615DB4A004FA5AE /* main.m in Sources */,
 				8375A2201615DB4A004FA5AE /* REAppDelegate.m in Sources */,
+				8375A22B1615DB60004FA5AE /* RERetrodeManager.m in Sources */,
+				8375A22E1615DB8C004FA5AE /* RERetrode.m in Sources */,
+				830C011716172907007BEF28 /* NSString+NSRangeAdditions.m in Sources */,
+				830C011A16173C57007BEF28 /* REFirmwareUpdater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +305,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retrode/Retrode-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG_PRINT,
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "Retrode/Retrode-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -298,6 +346,7 @@
 				8375A2281615DB4A004FA5AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

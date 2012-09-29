@@ -5,3 +5,14 @@
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
 #endif
+
+#pragma mark Debug Logging
+#define BOOL_STR(var) ((var) ? "YES" : "NO")
+
+#ifdef DEBUG_PRINT
+#define DLog(format, ...) NSLog(@"%s: " format, __FUNCTION__, ##__VA_ARGS__)
+#define DLogDeprecated()  NSLog(@"%s is deprecated.", __FUNCTION__)
+#else
+#define DLog(format, ...) do {} while (0)
+#define DLogDeprecated() do {} while (0)
+#endif

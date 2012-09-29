@@ -7,9 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "RERetrodeManager.h"
 @interface REAppDelegate : NSObject <NSApplicationDelegate>
-
-@property (assign) IBOutlet NSWindow *window;
-
+- (IBAction)logRetrodeDescriptions:(id)sender;
+- (IBAction)unmountRetrodes:(id)sender;
+- (IBAction)mountRetrodes:(id)sender;
+- (IBAction)readConfigurations:(id)sender;
+- (IBAction)writeConfigurations:(id)sender;
+- (IBAction)updateAvailableFirmwareVersion:(id)sender;
 @end
