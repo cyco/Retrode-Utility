@@ -30,10 +30,6 @@
 @property IBOutlet NSTextField    *firmwareFailReasonField;
 @property IBOutlet NSProgressIndicator *firmwareProgressIndicator;
 @property IBOutlet NSView         *firmwareFinishedView;
-
-@property IBOutlet NSProgressIndicator *loadingIndicator;
-
-@property IBOutlet RESplashWindow *mainWindow;
 #pragma mark - User Interface -
 - (IBAction)firmwareButtonAction:(id)sender;
 - (IBAction)installFirmware:(id)sender;
