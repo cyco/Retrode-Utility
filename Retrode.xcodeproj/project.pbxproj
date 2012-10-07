@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		830C011716172907007BEF28 /* NSString+NSRangeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 830C011616172907007BEF28 /* NSString+NSRangeAdditions.m */; };
 		830C011A16173C57007BEF28 /* REFirmwareUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 830C011916173C57007BEF28 /* REFirmwareUpdater.m */; };
+		8317DD621621990E00EDEFF3 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317DD611621990E00EDEFF3 /* Quartz.framework */; };
+		83515AA4161E4301009ADF10 /* dfu-programmer in Resources */ = {isa = PBXBuildFile; fileRef = 83515AA3161E4301009ADF10 /* dfu-programmer */; };
 		8356A2C41616603900377E4B /* DiskArbitration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8356A2C31616603900377E4B /* DiskArbitration.framework */; };
 		8375A20D1615DB4A004FA5AE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8375A20C1615DB4A004FA5AE /* Cocoa.framework */; };
 		8375A2171615DB4A004FA5AE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8375A2151615DB4A004FA5AE /* InfoPlist.strings */; };
@@ -19,7 +21,22 @@
 		8375A22B1615DB60004FA5AE /* RERetrodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375A22A1615DB60004FA5AE /* RERetrodeManager.m */; };
 		8375A22E1615DB8C004FA5AE /* RERetrode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375A22D1615DB8C004FA5AE /* RERetrode.m */; };
 		8375A2341615E09E004FA5AE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8375A2331615E09E004FA5AE /* IOKit.framework */; };
+		837B69E0161EE649003B93D9 /* RESplashWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 837B69DF161EE649003B93D9 /* RESplashWindow.m */; };
+		837B69E4161EEE4F003B93D9 /* Retrode 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 837B69E3161EEE4F003B93D9 /* Retrode 2.png */; };
+		83C888891620C919006FF1E0 /* NS(Attributed)String+Geometrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C888881620C919006FF1E0 /* NS(Attributed)String+Geometrics.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		83515AB0161E5596009ADF10 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		830C010E16171D90007BEF28 /* RERetrode_Configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RERetrode_Configuration.h; sourceTree = "<group>"; };
@@ -27,6 +44,9 @@
 		830C011616172907007BEF28 /* NSString+NSRangeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSRangeAdditions.m"; sourceTree = "<group>"; };
 		830C011816173C57007BEF28 /* REFirmwareUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REFirmwareUpdater.h; sourceTree = "<group>"; };
 		830C011916173C57007BEF28 /* REFirmwareUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REFirmwareUpdater.m; sourceTree = "<group>"; };
+		8317DD611621990E00EDEFF3 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		8331819B161FA6C400C16558 /* RERetrode_ManagerPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RERetrode_ManagerPrivate.h; sourceTree = "<group>"; };
+		83515AA3161E4301009ADF10 /* dfu-programmer */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "dfu-programmer"; sourceTree = "<group>"; };
 		8356A2C116164B9000377E4B /* RERetrode_IOLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RERetrode_IOLevel.h; sourceTree = "<group>"; };
 		8356A2C31616603900377E4B /* DiskArbitration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiskArbitration.framework; path = System/Library/Frameworks/DiskArbitration.framework; sourceTree = SDKROOT; };
 		8375A2081615DB4A004FA5AE /* Retrode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Retrode.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +67,11 @@
 		8375A22C1615DB8C004FA5AE /* RERetrode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RERetrode.h; sourceTree = "<group>"; };
 		8375A22D1615DB8C004FA5AE /* RERetrode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RERetrode.m; sourceTree = "<group>"; };
 		8375A2331615E09E004FA5AE /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		837B69DE161EE649003B93D9 /* RESplashWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESplashWindow.h; sourceTree = "<group>"; };
+		837B69DF161EE649003B93D9 /* RESplashWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESplashWindow.m; sourceTree = "<group>"; };
+		837B69E3161EEE4F003B93D9 /* Retrode 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Retrode 2.png"; sourceTree = "<group>"; };
+		83C888871620C919006FF1E0 /* NS(Attributed)String+Geometrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NS(Attributed)String+Geometrics.h"; sourceTree = "<group>"; };
+		83C888881620C919006FF1E0 /* NS(Attributed)String+Geometrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NS(Attributed)String+Geometrics.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8317DD621621990E00EDEFF3 /* Quartz.framework in Frameworks */,
 				8356A2C41616603900377E4B /* DiskArbitration.framework in Frameworks */,
 				8375A2341615E09E004FA5AE /* IOKit.framework in Frameworks */,
 				8375A20D1615DB4A004FA5AE /* Cocoa.framework in Frameworks */,
@@ -66,6 +92,8 @@
 		830C0114161728F8007BEF28 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				83C888871620C919006FF1E0 /* NS(Attributed)String+Geometrics.h */,
+				83C888881620C919006FF1E0 /* NS(Attributed)String+Geometrics.m */,
 				830C011516172907007BEF28 /* NSString+NSRangeAdditions.h */,
 				830C011616172907007BEF28 /* NSString+NSRangeAdditions.m */,
 			);
@@ -92,6 +120,7 @@
 		8375A20B1615DB4A004FA5AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8317DD611621990E00EDEFF3 /* Quartz.framework */,
 				8356A2C31616603900377E4B /* DiskArbitration.framework */,
 				8375A2331615E09E004FA5AE /* IOKit.framework */,
 				8375A20C1615DB4A004FA5AE /* Cocoa.framework */,
@@ -113,19 +142,14 @@
 		8375A2121615DB4A004FA5AE /* Retrode */ = {
 			isa = PBXGroup;
 			children = (
+				837B69E2161EE825003B93D9 /* Retrode 'Framework' */,
 				830C0114161728F8007BEF28 /* Utilities */,
 				8375A21E1615DB4A004FA5AE /* REAppDelegate.h */,
 				8375A21F1615DB4A004FA5AE /* REAppDelegate.m */,
+				837B69DE161EE649003B93D9 /* RESplashWindow.h */,
+				837B69DF161EE649003B93D9 /* RESplashWindow.m */,
 				8375A2211615DB4A004FA5AE /* MainMenu.xib */,
 				8375A2131615DB4A004FA5AE /* Supporting Files */,
-				8375A22C1615DB8C004FA5AE /* RERetrode.h */,
-				8375A22D1615DB8C004FA5AE /* RERetrode.m */,
-				8356A2C116164B9000377E4B /* RERetrode_IOLevel.h */,
-				830C010E16171D90007BEF28 /* RERetrode_Configuration.h */,
-				8375A2291615DB60004FA5AE /* RERetrodeManager.h */,
-				8375A22A1615DB60004FA5AE /* RERetrodeManager.m */,
-				830C011816173C57007BEF28 /* REFirmwareUpdater.h */,
-				830C011916173C57007BEF28 /* REFirmwareUpdater.m */,
 			);
 			path = Retrode;
 			sourceTree = "<group>";
@@ -133,6 +157,8 @@
 		8375A2131615DB4A004FA5AE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				837B69E3161EEE4F003B93D9 /* Retrode 2.png */,
+				83515AA3161E4301009ADF10 /* dfu-programmer */,
 				8375A2141615DB4A004FA5AE /* Retrode-Info.plist */,
 				8375A2151615DB4A004FA5AE /* InfoPlist.strings */,
 				8375A2181615DB4A004FA5AE /* main.m */,
@@ -140,6 +166,22 @@
 				8375A21B1615DB4A004FA5AE /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		837B69E2161EE825003B93D9 /* Retrode 'Framework' */ = {
+			isa = PBXGroup;
+			children = (
+				8375A22C1615DB8C004FA5AE /* RERetrode.h */,
+				8375A22D1615DB8C004FA5AE /* RERetrode.m */,
+				8356A2C116164B9000377E4B /* RERetrode_IOLevel.h */,
+				830C010E16171D90007BEF28 /* RERetrode_Configuration.h */,
+				8331819B161FA6C400C16558 /* RERetrode_ManagerPrivate.h */,
+				8375A2291615DB60004FA5AE /* RERetrodeManager.h */,
+				8375A22A1615DB60004FA5AE /* RERetrodeManager.m */,
+				830C011816173C57007BEF28 /* REFirmwareUpdater.h */,
+				830C011916173C57007BEF28 /* REFirmwareUpdater.m */,
+			);
+			name = "Retrode 'Framework'";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +194,7 @@
 				8375A2041615DB4A004FA5AE /* Sources */,
 				8375A2051615DB4A004FA5AE /* Frameworks */,
 				8375A2061615DB4A004FA5AE /* Resources */,
+				83515AB0161E5596009ADF10 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -197,6 +240,8 @@
 				8375A2171615DB4A004FA5AE /* InfoPlist.strings in Resources */,
 				8375A21D1615DB4A004FA5AE /* Credits.rtf in Resources */,
 				8375A2231615DB4A004FA5AE /* MainMenu.xib in Resources */,
+				83515AA4161E4301009ADF10 /* dfu-programmer in Resources */,
+				837B69E4161EEE4F003B93D9 /* Retrode 2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +258,8 @@
 				8375A22E1615DB8C004FA5AE /* RERetrode.m in Sources */,
 				830C011716172907007BEF28 /* NSString+NSRangeAdditions.m in Sources */,
 				830C011A16173C57007BEF28 /* REFirmwareUpdater.m in Sources */,
+				837B69E0161EE649003B93D9 /* RESplashWindow.m in Sources */,
+				83C888891620C919006FF1E0 /* NS(Attributed)String+Geometrics.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +350,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retrode/Retrode-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -319,6 +370,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retrode/Retrode-Prefix.pch";
 				INFOPLIST_FILE = "Retrode/Retrode-Info.plist";

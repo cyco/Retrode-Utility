@@ -13,7 +13,7 @@
 #import <DiskArbitration/DiskArbitration.h>
 @interface RERetrode ()
 @property UInt32 locationID;
-@property BOOL DFUMode;
+@property (nonatomic) BOOL DFUMode;
 @property REDeviceData *deviceData;
 
 - (void)setupWithDeviceData:(REDeviceData*)deviceData;

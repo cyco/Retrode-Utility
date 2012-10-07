@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <IOKit/usb/IOUSBLib.h>
 
+extern NSString * const RERetrodesDidConnectNotificationName;
+
 typedef struct REDeviceData {
     io_object_t				notification;
     IOUSBDeviceInterface	**deviceInterface;

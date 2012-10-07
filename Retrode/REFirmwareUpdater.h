@@ -9,10 +9,20 @@
 #import <Foundation/Foundation.h>
 
 extern NSString * const REFirmwareUpdaterDidReloadVersions;
+extern NSString * const REFirmwareUpdateErrorDomain;
+extern const NSInteger kREFirmwareUpdateErrorOtherUpdateInProgress;
+extern const NSInteger kREFirmwareUpdateErrorDeviceVersionMismatch;
+extern const NSInteger kREFirmwareUpdateErrorVersionAlreadyInstalled;
+extern const NSInteger kREFirmwareUpdateErrorRetrodeNotConnected;
+extern const NSInteger kREFirmwareUpdateErrorRetrodeNotInDFU;
 
-@interface REFirmwareUpdater : NSObject
+@class REFirmware, RERetrode;
+@interface REFirmwareUpdater : NSObject <NSURLDownloadDelegate>
 + (REFirmwareUpdater*)sharedFirmwareUpdater;
 - (BOOL)updateAvailableFirmwareVersionsWithError:(NSError**)outError;
+
+- (void)installFirmware:(REFirmware*)firmware toRetrode:(RERetrode*)retrode withCallback:(void (^)(double, id))callback;
+
 @property (strong, readonly) NSArray *availableFirmwareVersions;
 @end
 
