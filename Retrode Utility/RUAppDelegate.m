@@ -1,21 +1,21 @@
 //
-//  REAppDelegate.m
+//  RUAppDelegate.m
 //  Retrode Utility
 //
 //  Created by Christoph Leimbrock on 28.09.12.
 //  Copyright (c) 2012 Christoph Leimbrock. All rights reserved.
 //
 
-#import "REAppDelegate.h"
-#import "RERetrode.h"
-#import "RERetrode_IOLevel.h"
-#import "RERetrode_Configuration.h"
+#import "RUAppDelegate.h"
+#import "RURetrode.h"
+#import "RURetrode_IOLevel.h"
+#import "RURetrode_Configuration.h"
 
-#import "REFirmwareUpdater.h"
+#import "RUFirmwareUpdater.h"
 
 #import "NS(Attributed)String+Geometrics.h"
 #import <Quartz/Quartz.h>
-@implementation REAppDelegate
+@implementation RUAppDelegate
 
 - (id)init
 {
@@ -24,10 +24,10 @@
     {
         [self addObserver:self forKeyPath:@"currentRetrode" options:NSKeyValueObservingOptionNew context:nil];
         [self addObserver:self forKeyPath:@"currentRetrode.deviceVersion" options:0 context:nil];
-        REFirmwareUpdater *sharedFirmwareUpdater = [REFirmwareUpdater sharedFirmwareUpdater];
+        RUFirmwareUpdater *sharedFirmwareUpdater = [RUFirmwareUpdater sharedFirmwareUpdater];
         [sharedFirmwareUpdater addObserver:self forKeyPath:@"availableFirmwareVersions" options:0 context:nil];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrodesDidConnect:) name:RERetrodesDidConnectNotificationName object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrodesDidConnect:) name:RURetrodesDidConnectNotificationName object:nil];
     }
     return self;
 }
@@ -37,17 +37,17 @@
     [self removeObserver:self forKeyPath:@"currentRetrode"];
     [self removeObserver:self forKeyPath:@"currentRetrode.deviceVersion"];
     
-    REFirmwareUpdater *sharedFirmwareUpdater = [REFirmwareUpdater sharedFirmwareUpdater];
+    RUFirmwareUpdater *sharedFirmwareUpdater = [RUFirmwareUpdater sharedFirmwareUpdater];
     [sharedFirmwareUpdater removeObserver:self forKeyPath:@"availableFirmwareVersions"];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){ [[RERetrodeManager sharedManager] startRetrodeSupport]; });
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){ [[RURetrodeManager sharedManager] startRetrodeSupport]; });
     dispatch_async(dispatch_get_main_queue(), ^{
         NSError *error  = nil;
-        BOOL    success = [[REFirmwareUpdater sharedFirmwareUpdater] updateAvailableFirmwareVersionsWithError:&error];
+        BOOL    success = [[RUFirmwareUpdater sharedFirmwareUpdater] updateAvailableFirmwareVersionsWithError:&error];
         if(!success)
             [NSApp presentError:error];
     });
@@ -55,7 +55,7 @@
 
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
-    [[RERetrodeManager sharedManager] stopRetrodeSupport];
+    [[RURetrodeManager sharedManager] stopRetrodeSupport];
 }
 #pragma mark - User Interface -
 - (IBAction)firmwareButtonAction:(id)sender
@@ -102,8 +102,8 @@
     [itemMenu addItem:noSelection];
     [itemMenu addItem:[NSMenuItem separatorItem]];
     
-    RERetrode *retrode = [self currentRetrode];
-    REFirmwareUpdater *firmwareUpdater = [REFirmwareUpdater sharedFirmwareUpdater];
+    RURetrode *retrode = [self currentRetrode];
+    RUFirmwareUpdater *firmwareUpdater = [RUFirmwareUpdater sharedFirmwareUpdater];
     NSArray *availableFirmwareVersions = [firmwareUpdater availableFirmwareVersions];
     if([retrode deviceVersion] == nil || [availableFirmwareVersions count]==0)
     {
@@ -112,11 +112,11 @@
         [[[self firmwareButton] itemAtIndex:0] setEnabled:NO];
         return;
     }
-    NSArray *suitableFirmwareVersions  = [availableFirmwareVersions filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(REFirmware *evaluatedObject, NSDictionary *bindings) {
+    NSArray *suitableFirmwareVersions  = [availableFirmwareVersions filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(RUFirmware *evaluatedObject, NSDictionary *bindings) {
         return [[evaluatedObject deviceVersion] isEqualTo:[retrode deviceVersion]];
     }]];
     
-    [suitableFirmwareVersions enumerateObjectsUsingBlock:^(REFirmware *obj, NSUInteger idx, BOOL *stop) {
+    [suitableFirmwareVersions enumerateObjectsUsingBlock:^(RUFirmware *obj, NSUInteger idx, BOOL *stop) {
         NSMenuItem *item = [[NSMenuItem alloc] init];
         [item setTitle:[obj version]];
         [item setRepresentedObject:obj];
@@ -152,12 +152,12 @@
             return;
         [self setFirmwareUpdateInProgress:YES];
         
-        REFirmware *firmware = [[[self firmwareButton] selectedItem] representedObject];
+        RUFirmware *firmware = [[[self firmwareButton] selectedItem] representedObject];
         [[self firmwareProgressIndicator] setDoubleValue:0.0];
         [[self firmwareProgressOperationField] setStringValue:@"Starting..."];
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [[REFirmwareUpdater sharedFirmwareUpdater] installFirmware:firmware toRetrode:[self currentRetrode] withCallback:^(double progress, id status) {
+            [[RUFirmwareUpdater sharedFirmwareUpdater] installFirmware:firmware toRetrode:[self currentRetrode] withCallback:^(double progress, id status) {
                 if([status isKindOfClass:[NSString class]])
                 {
                     [[self firmwareProgressOperationField] setStringValue:status];
@@ -207,7 +207,7 @@
 {
     if(object==self && [keyPath isEqualToString:@"currentRetrode"])
     {
-        RERetrode *newRetrode            = [change objectForKey:NSKeyValueChangeNewKey];
+        RURetrode *newRetrode            = [change objectForKey:NSKeyValueChangeNewKey];
         BOOL      showControls           = newRetrode != nil && [newRetrode isNotEqualTo:[NSNull null]];
         NSView    *controlsContainer     = [[self configButton] superview];
         NSView    *instructionsContainer = [self instructionsContainer];
@@ -245,7 +245,7 @@
         [NSAnimationContext endGrouping];
     }
     else if((object == self && [keyPath isEqualToString:@"currentRetrode.deviceVersion"])
-            || (object == [REFirmwareUpdater sharedFirmwareUpdater] && [keyPath isEqualToString:@"availableFirmwareVersions"]))
+            || (object == [RUFirmwareUpdater sharedFirmwareUpdater] && [keyPath isEqualToString:@"availableFirmwareVersions"]))
     {
         [self updateFirmwareSelection];
     }
@@ -253,9 +253,9 @@
 
 -(void)retrodesDidConnect:(NSNotification*)notification
 {
-    RERetrodeManager *sharedManager     = [RERetrodeManager sharedManager];
+    RURetrodeManager *sharedManager     = [RURetrodeManager sharedManager];
     NSArray          *connectedRetrodes = [sharedManager connectedRetrodes];
-    RERetrode        *retrode           = [connectedRetrodes lastObject];
+    RURetrode        *retrode           = [connectedRetrodes lastObject];
     if([self currentRetrode] == nil)
     {
         [self setCurrentRetrode:retrode];
@@ -267,12 +267,12 @@
 }
 
 #pragma mark - Retrode Delegate -
-- (void)retrodeDidConnect:(RERetrode *)retrode
+- (void)retrodeDidConnect:(RURetrode *)retrode
 {
     DLog();
 }
 
-- (void)retrodeDidDisconnect:(RERetrode *)retrode
+- (void)retrodeDidDisconnect:(RURetrode *)retrode
 {
     DLog();
     [self setCurrentRetrode:nil];
@@ -281,27 +281,27 @@
     [[self firmwareDrawer] close:self];
 }
 
-- (void)retrodeHardwareDidBecomeAvailable:(RERetrode*)retrode
+- (void)retrodeHardwareDidBecomeAvailable:(RURetrode*)retrode
 {
     DLog();
 }
 
-- (void)retrodeHardwareDidBecomeUnavailable:(RERetrode*)retrode
+- (void)retrodeHardwareDidBecomeUnavailable:(RURetrode*)retrode
 {
     DLog();
 }
 
-- (void)retrodeDidMount:(RERetrode *)retrode
+- (void)retrodeDidMount:(RURetrode *)retrode
 {
     DLog();
     [retrode readConfiguration];
 }
 
-- (void)retrodeDidUnmount:(RERetrode *)retrode
+- (void)retrodeDidUnmount:(RURetrode *)retrode
 {
     DLog();
 }
-- (void)retrodeDidEnterDFUMode:(RERetrode*)retrode
+- (void)retrodeDidEnterDFUMode:(RURetrode*)retrode
 {
     DLog();
     NSInteger drawerState = [[self firmwareDrawer] state];
@@ -311,7 +311,7 @@
     }
 }
 
-- (void)retrodeDidLeaveDFUMode:(RERetrode*)retrode
+- (void)retrodeDidLeaveDFUMode:(RURetrode*)retrode
 {
     DLog();
     

@@ -1,5 +1,5 @@
 //
-//  RESplashWindow.h
+//  RUSplashWindow.h
 //  Retrode Utility
 //
 //  Created by Christoph Leimbrock on 05.10.12.
@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface RESplashWindow : NSWindow
+@interface RUSplashWindow : NSWindow
 - (void)expand:(id)sender;
 - (void)colapse:(id)sender;
 @end

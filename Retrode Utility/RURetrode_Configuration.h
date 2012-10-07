@@ -1,14 +1,14 @@
 //
-//  RERetrode_Configuration.h
+//  RURetrode_Configuration.h
 //  Retrode Utility
 //
 //  Created by Christoph Leimbrock on 29.09.12.
 //  Copyright (c) 2012 Christoph Leimbrock. All rights reserved.
 //
 
-#import "RERetrode.h"
+#import "RURetrode.h"
 
-@interface RERetrode ()
+@interface RURetrode ()
 
 - (void)readConfiguration;
 - (void)writeConfiguration;

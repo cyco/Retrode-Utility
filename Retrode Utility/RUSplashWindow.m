@@ -1,17 +1,16 @@
 //
-//  RESplashWindow.m
+//  RUSplashWindow.m
 //  Retrode Utility
 //
 //  Created by Christoph Leimbrock on 05.10.12.
 //  Copyright (c) 2012 Christoph Leimbrock. All rights reserved.
 //
 
-// Taken from http://cocoadev.com/wiki/SplashWindow
-#import "RESplashWindow.h"
+#import "RUSplashWindow.h"
 
-@interface RESplashWindowContentView : NSView
+@interface RUSplashWindowContentView : NSView
 @end
-@implementation RESplashWindow
+@implementation RUSplashWindow
 
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)windowStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)deferCreation
 {
@@ -83,7 +82,7 @@
 }
 @end
 
-@implementation RESplashWindowContentView
+@implementation RUSplashWindowContentView
 - (BOOL)canBecomeKeyView
 {
     return YES;

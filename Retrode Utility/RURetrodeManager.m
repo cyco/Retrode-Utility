@@ -1,15 +1,15 @@
 //
-//  RERetrodeManager.m
+//  RURetrodeManager.m
 //  Retrode Utility
 //
 //  Created by Christoph Leimbrock on 28.09.12.
 //  Copyright (c) 2012 Christoph Leimbrock. All rights reserved.
 //
 
-#import "RERetrodeManager.h"
-#import "RERetrode.h"
-#import "RERetrode_IOLevel.h"
-#import "RERetrode_ManagerPrivate.h"
+#import "RURetrodeManager.h"
+#import "RURetrode.h"
+#import "RURetrode_IOLevel.h"
+#import "RURetrode_ManagerPrivate.h"
 
 #import <IOKit/IOKitLib.h>
 #import <IOKit/IOMessage.h>
@@ -18,8 +18,8 @@
 #import <paths.h>
 #import <IOKit/IOBSD.h>
 
-NSString * const RERetrodesDidConnectNotificationName = @"RERetrodesDidConnectNotificationName";
-@interface RERetrodeManager ()
+NSString * const RURetrodesDidConnectNotificationName = @"RURetrodesDidConnectNotificationName";
+@interface RURetrodeManager ()
 {
     BOOL retrodeSupportActive;
     NSMutableDictionary     *retrodes;
@@ -30,18 +30,18 @@ NSString * const RERetrodesDidConnectNotificationName = @"RERetrodesDidConnectNo
 }
 BOOL addDevice(void *refCon, io_service_t usbDevice);
 
-- (NSDictionary*)RE_mainMatchingCriteria;
-- (NSDictionary*)RE_mainMatchingCriteriaWithLocationID:(UInt32)locationID;
-- (NSDictionary*)RE_dfuMatchingCriteria;
-- (NSDictionary*)RE_dfuMatchingCriteriaWithLocationID:(UInt32)locationID;
+- (NSDictionary*)RU_mainMatchingCriteria;
+- (NSDictionary*)RU_mainMatchingCriteriaWithLocationID:(UInt32)locationID;
+- (NSDictionary*)RU_dfuMatchingCriteria;
+- (NSDictionary*)RU_dfuMatchingCriteriaWithLocationID:(UInt32)locationID;
 @end
-@implementation RERetrodeManager
-+ (RERetrodeManager*)sharedManager
+@implementation RURetrodeManager
++ (RURetrodeManager*)sharedManager
 {
-    static RERetrodeManager* sharedRetrodeManager = nil;
+    static RURetrodeManager* sharedRetrodeManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedRetrodeManager = [[RERetrodeManager alloc] init];
+        sharedRetrodeManager = [[RURetrodeManager alloc] init];
     });
     return sharedRetrodeManager;
 }
@@ -70,8 +70,8 @@ BOOL addDevice(void *refCon, io_service_t usbDevice);
     kern_return_t error;
     
     // Setup dictionary to match USB device
-    CFDictionaryRef mainMatchingCriteria = CFBridgingRetain([self RE_mainMatchingCriteria]);
-    CFDictionaryRef dfuMatchingCriteria = CFBridgingRetain([self RE_dfuMatchingCriteria]);
+    CFDictionaryRef mainMatchingCriteria = CFBridgingRetain([self RU_mainMatchingCriteria]);
+    CFDictionaryRef dfuMatchingCriteria = CFBridgingRetain([self RU_dfuMatchingCriteria]);
     notificationPort = IONotificationPortCreate(kIOMasterPortDefault);
     CFRunLoopSourceRef runLoopSource = IONotificationPortGetRunLoopSource(notificationPort);
     
@@ -96,8 +96,8 @@ BOOL addDevice(void *refCon, io_service_t usbDevice);
     retrodeSupportActive = NO;
     
     [retrodes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        RERetrode    *aRetrode   = obj;
-        REDeviceData *deviceData = [aRetrode deviceData];
+        RURetrode    *aRetrode   = obj;
+       RUDeviceData *deviceData = [aRetrode deviceData];
         [aRetrode setupWithDeviceData:NULL];
         if(deviceData != NULL)
         {
@@ -125,13 +125,13 @@ BOOL addDevice(void *refCon, io_service_t usbDevice);
 #pragma mark - Callbacks
 void DeviceNotification(void *refCon, io_service_t service, natural_t messageType, void *messageArgument)
 {
-    REDeviceData *deviceData = (REDeviceData *)refCon;
+   RUDeviceData *deviceData = (RUDeviceData *)refCon;
     if (messageType == kIOMessageServiceIsTerminated) {
         DLog();
-        RERetrodeManager    *self              = [RERetrodeManager sharedManager];
+        RURetrodeManager    *self              = [RURetrodeManager sharedManager];
         NSMutableDictionary *retrodes          = self->retrodes;
-        NSString            *retrodeIdentifier = [RERetrode generateIdentifierFromDeviceData:deviceData];
-        RERetrode           *retrode           = [retrodes objectForKey:retrodeIdentifier];
+        NSString            *retrodeIdentifier = [RURetrode generateIdentifierFromDeviceData:deviceData];
+        RURetrode           *retrode           = [retrodes objectForKey:retrodeIdentifier];
         
         [retrode setupWithDeviceData:NULL];
         
@@ -141,18 +141,18 @@ void DeviceNotification(void *refCon, io_service_t service, natural_t messageTyp
         IOObjectRelease(deviceData->ioService);
         free(deviceData);
         
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, kREDisconnectDelay * NSEC_PER_SEC);
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, kRUDisconnectDelay * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            RERetrodeManager *self        = [RERetrodeManager sharedManager];
+            RURetrodeManager *self        = [RURetrodeManager sharedManager];
             NSMutableDictionary *retrodes = self->retrodes;
-            RERetrode  *retrode           = [retrodes objectForKey:retrodeIdentifier];
+            RURetrode  *retrode           = [retrodes objectForKey:retrodeIdentifier];
             if([retrode deviceData] == NULL)
             {
                 // try to recover one last time
-                io_service_t service = IOServiceGetMatchingService(kIOMasterPortDefault, CFBridgingRetain([self RE_mainMatchingCriteriaWithLocationID:[retrode locationID]]));
+                io_service_t service = IOServiceGetMatchingService(kIOMasterPortDefault, CFBridgingRetain([self RU_mainMatchingCriteriaWithLocationID:[retrode locationID]]));
                 if(service == 0)
                 {
-                    service = IOServiceGetMatchingService(kIOMasterPortDefault, CFBridgingRetain([self RE_dfuMatchingCriteriaWithLocationID:[retrode locationID]]));
+                    service = IOServiceGetMatchingService(kIOMasterPortDefault, CFBridgingRetain([self RU_dfuMatchingCriteriaWithLocationID:[retrode locationID]]));
                 }
                 if(service == 0)
                 {
@@ -168,7 +168,7 @@ void DeviceNotification(void *refCon, io_service_t service, natural_t messageTyp
 
 void DeviceAdded(void *refCon, io_iterator_t iterator)
 {
-    RERetrodeManager *self = [RERetrodeManager sharedManager];
+    RURetrodeManager *self = [RURetrodeManager sharedManager];
     BOOL sendNotification = NO;
     io_service_t  usbDevice;
     while ((usbDevice = IOIteratorNext(iterator))) {
@@ -176,21 +176,21 @@ void DeviceAdded(void *refCon, io_iterator_t iterator)
     }
     
     if(sendNotification)
-        [[NSNotificationCenter defaultCenter] postNotificationName:RERetrodesDidConnectNotificationName object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:RURetrodesDidConnectNotificationName object:self];
 }
 
 BOOL addDevice(void *refCon, io_service_t usbDevice)
 {
     BOOL sendNotification = NO;
-    RERetrodeManager *self = [RERetrodeManager sharedManager];
+    RURetrodeManager *self = [RURetrodeManager sharedManager];
     kern_return_t error;
     IOCFPlugInInterface	**plugInInterface = NULL;
-    REDeviceData        *deviceDataRef    = NULL;
+   RUDeviceData        *deviceDataRef    = NULL;
     UInt32			    locationID;
     
     // Prepare struct for device specific data
-    deviceDataRef = malloc(sizeof(REDeviceData));
-    memset(deviceDataRef, '\0', sizeof(REDeviceData));
+    deviceDataRef = malloc(sizeof(RUDeviceData));
+    memset(deviceDataRef, '\0', sizeof(RUDeviceData));
     
     // Get Interface Plugin
     SInt32 score; // unused
@@ -211,7 +211,7 @@ BOOL addDevice(void *refCon, io_service_t usbDevice)
     UInt16 productID;
     error = (*deviceDataRef->deviceInterface)->GetDeviceProduct(deviceDataRef->deviceInterface, &productID);
     assert(error == noErr);
-    BOOL isDFUDevice = (productID == kREProductIDVersion2DFU);
+    BOOL isDFUDevice = (productID == kRUProductIDVersion2DFU);
     
     // Register for device removal notification (keeps notification ref in device data)
     error = IOServiceAddInterestNotification(self->notificationPort, usbDevice, kIOGeneralInterest, DeviceNotification, deviceDataRef, &(deviceDataRef->notification));
@@ -220,12 +220,12 @@ BOOL addDevice(void *refCon, io_service_t usbDevice)
     deviceDataRef->ioService = usbDevice;
     
     // Create Retrode objc object
-    NSString  *identifier = [RERetrode generateIdentifierFromDeviceData:deviceDataRef];
-    RERetrode *retrode    = [self->retrodes objectForKey:identifier];
+    NSString  *identifier = [RURetrode generateIdentifierFromDeviceData:deviceDataRef];
+    RURetrode *retrode    = [self->retrodes objectForKey:identifier];
     if(!retrode && !isDFUDevice)
     {
         DLog(@"create new retrode");
-        retrode = [[RERetrode alloc] init];
+        retrode = [[RURetrode alloc] init];
         [self->retrodes setObject:retrode forKey:identifier];
         sendNotification = YES;
     }
@@ -252,29 +252,29 @@ BOOL addDevice(void *refCon, io_service_t usbDevice)
     return sendNotification;
 }
 #pragma mark -
-- (NSDictionary*)RE_mainMatchingCriteria
+- (NSDictionary*)RU_mainMatchingCriteria
 {
-    return [self RE_mainMatchingCriteriaWithLocationID:0];
+    return [self RU_mainMatchingCriteriaWithLocationID:0];
 }
-- (NSDictionary*)RE_mainMatchingCriteriaWithLocationID:(UInt32)locationID
+- (NSDictionary*)RU_mainMatchingCriteriaWithLocationID:(UInt32)locationID
 {
     if(locationID == 0)
-        return @{ @kIOProviderClassKey : @kIOUSBDeviceClassName, @kUSBVendorID : @(kREVendorIDVersion2), @kUSBProductID : @(kREProductIDVersion2) };
+        return @{ @kIOProviderClassKey : @kIOUSBDeviceClassName, @kUSBVendorID : @(kRUVendorIDVersion2), @kUSBProductID : @(kRUProductIDVersion2) };
     else
-        return @{ @kIOProviderClassKey : @kIOUSBDeviceClassName, @kUSBVendorID : @(kREVendorIDVersion2), @kUSBProductID : @(kREProductIDVersion2), @kIOLocationMatchKey : @(locationID) };
+        return @{ @kIOProviderClassKey : @kIOUSBDeviceClassName, @kUSBVendorID : @(kRUVendorIDVersion2), @kUSBProductID : @(kRUProductIDVersion2), @kIOLocationMatchKey : @(locationID) };
     
 }
 
-- (NSDictionary*)RE_dfuMatchingCriteria
+- (NSDictionary*)RU_dfuMatchingCriteria
 {
-    return [self RE_dfuMatchingCriteriaWithLocationID:0];
+    return [self RU_dfuMatchingCriteriaWithLocationID:0];
 }
 
-- (NSDictionary*)RE_dfuMatchingCriteriaWithLocationID:(UInt32)locationID
+- (NSDictionary*)RU_dfuMatchingCriteriaWithLocationID:(UInt32)locationID
 {
     if(locationID == 0)
-        return @{ @kIOProviderClassKey : @kIOUSBDeviceClassName, @kUSBVendorID : @(kREVendorIDVersion2DFU), @kUSBProductID : @(kREProductIDVersion2DFU) };
+        return @{ @kIOProviderClassKey : @kIOUSBDeviceClassName, @kUSBVendorID : @(kRUVendorIDVersion2DFU), @kUSBProductID : @(kRUProductIDVersion2DFU) };
     else
-        return @{ @kIOProviderClassKey : @kIOUSBDeviceClassName, @kUSBVendorID : @(kREVendorIDVersion2DFU), @kUSBProductID : @(kREProductIDVersion2DFU), @kIOLocationMatchKey : @(locationID) };
+        return @{ @kIOProviderClassKey : @kIOUSBDeviceClassName, @kUSBVendorID : @(kRUVendorIDVersion2DFU), @kUSBProductID : @(kRUProductIDVersion2DFU), @kIOLocationMatchKey : @(locationID) };
 }
 @end

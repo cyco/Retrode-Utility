@@ -1,5 +1,5 @@
 //
-//  RERetrodeManager.h
+//  RURetrodeManager.h
 //  Retrode Utility
 //
 //  Created by Christoph Leimbrock on 28.09.12.
@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <IOKit/usb/IOUSBLib.h>
 
-extern NSString * const RERetrodesDidConnectNotificationName;
+extern NSString * const RURetrodesDidConnectNotificationName;
 
-typedef struct REDeviceData {
+typedef struct RUDeviceData {
     io_object_t				notification;
     IOUSBDeviceInterface	**deviceInterface;
     io_service_t            ioService;
     UInt32					locationID;
-} REDeviceData;
+}RUDeviceData;
 
-@class RERetrode;
-@interface RERetrodeManager : NSObject
-+ (RERetrodeManager*)sharedManager;
+@class RURetrode;
+@interface RURetrodeManager : NSObject
++ (RURetrodeManager*)sharedManager;
 
 - (void)startRetrodeSupport;
 - (void)stopRetrodeSupport;

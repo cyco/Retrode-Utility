@@ -1,5 +1,5 @@
 //
-//  REAppDelegate.h
+//  RUAppDelegate.h
 //  Retrode Utility
 //
 //  Created by Christoph Leimbrock on 28.09.12.
@@ -7,10 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "RERetrodeManager.h"
-#import "RERetrode.h"
-#import "RESplashWindow.h"
-@interface REAppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate, REREtrodeDelegate, NSDrawerDelegate>
+#import "RURetrodeManager.h"
+#import "RURetrode.h"
+#import "RUSplashWindow.h"
+@interface RUAppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate, RURetrodeDelegate, NSDrawerDelegate>
 
 @property BOOL firmwareUpdateInProgress;
 #pragma mark - 
@@ -39,5 +39,5 @@
 
 - (IBAction)showOfficialRetrodeManual:(id)sender;
 
-@property (strong) RERetrode *currentRetrode;
+@property (strong) RURetrode *currentRetrode;
 @end

@@ -1,14 +1,14 @@
 //
-//  RERetrode.m
+//  RURetrode.m
 //  Retrode Utility
 //
 //  Created by Christoph Leimbrock on 28.09.12.
 //  Copyright (c) 2012 Christoph Leimbrock. All rights reserved.
 //
 
-#import "RERetrode.h"
-#import "RERetrode_IOLevel.h"
-#import "RERetrode_Configuration.h"
+#import "RURetrode.h"
+#import "RURetrode_IOLevel.h"
+#import "RURetrode_Configuration.h"
 
 #import <IOKit/IOKitLib.h>
 #import <IOKit/IOKitKeys.h>
@@ -23,22 +23,22 @@
 #define IfNotConnectedReturn(__RETURN_VALUE__) if([self deviceData] == NULL) return __RETURN_VALUE__;
 
 #pragma mark Retrode Specific Constants
-#define kREConfigurationEncoding NSASCIIStringEncoding
-#define kREConfigurationLineSeparator @"\r\n"
-#define kREConfigurationFileName @"RETRODE.CFG"
+#define kRUConfigurationEncoding NSASCIIStringEncoding
+#define kRUConfigurationLineSeparator @"\r\n"
+#define kRUConfigurationFileName @"RETRODE.CFG"
 
-const int64_t kREDisconnectDelay   = 1.0;
-const int32_t kREVendorIDVersion2  = 0x0403;
-const int32_t kREProductIDVersion2 = 0x97c1;
+const int64_t kRUDisconnectDelay   = 1.0;
+const int32_t kRUVendorIDVersion2  = 0x0403;
+const int32_t kRUProductIDVersion2 = 0x97c1;
 
-const int32_t kREVendorIDVersion2DFU  = 0x03eb;
-const int32_t kREProductIDVersion2DFU = 0x2ff9;
+const int32_t kRUVendorIDVersion2DFU  = 0x03eb;
+const int32_t kRUProductIDVersion2DFU = 0x2ff9;
 
 #pragma mark Error Constants
-NSString * const kREDiskNotMounted = @"Not Mounted";
-NSString * const kRENoBSDDevice    = @"No BSD device";
+NSString * const kRUDiskNotMounted = @"Not Mounted";
+NSString * const kRUNoBSDDevice    = @"No BSD device";
 
-@interface RERetrode ()
+@interface RURetrode ()
 {
     DASessionRef daSession;
     DAApprovalSessionRef apSession;
@@ -46,13 +46,13 @@ NSString * const kRENoBSDDevice    = @"No BSD device";
 @property (readwrite, strong) NSString *identifier;
 @end
 
-@implementation RERetrode
+@implementation RURetrode
 - (id)init
 {
     self = [super init];
     if (self != nil)
     {
-        [self RE_setupDASessions];
+        [self RU_setupDASessions];
     }
     return self;
 }
@@ -78,9 +78,9 @@ NSString * const kRENoBSDDevice    = @"No BSD device";
 - (NSString*)configurationFilePath
 {
     NSString *mountPath = [self mountPath];
-    if(mountPath == kREDiskNotMounted || mountPath == kRENoBSDDevice)
+    if(mountPath == kRUDiskNotMounted || mountPath == kRUNoBSDDevice)
         return mountPath;
-    return [mountPath stringByAppendingPathComponent:kREConfigurationFileName];
+    return [mountPath stringByAppendingPathComponent:kRUConfigurationFileName];
 }
 
 - (void)readConfiguration
@@ -95,8 +95,8 @@ NSString * const kRENoBSDDevice    = @"No BSD device";
         return;
     }
     
-    NSString  *configFile = [[NSString alloc] initWithData:configFileData encoding:kREConfigurationEncoding];
-    NSArray   *lines      = [configFile componentsSeparatedByString:kREConfigurationLineSeparator];
+    NSString  *configFile = [[NSString alloc] initWithData:configFileData encoding:kRUConfigurationEncoding];
+    NSArray   *lines      = [configFile componentsSeparatedByString:kRUConfigurationLineSeparator];
 
     // Read firmware version from first line
     NSString * firmwareLine         = [lines objectAtIndex:0];
@@ -186,8 +186,8 @@ NSString * const kRENoBSDDevice    = @"No BSD device";
     }
     
     NSString *filePath     = [self configurationFilePath];
-    NSString *fileContents = [configurationLines componentsJoinedByString:kREConfigurationLineSeparator];
-    NSData   *fileData     = [fileContents dataUsingEncoding:kREConfigurationEncoding];
+    NSString *fileContents = [configurationLines componentsJoinedByString:kRUConfigurationLineSeparator];
+    NSData   *fileData     = [fileContents dataUsingEncoding:kRUConfigurationEncoding];
     BOOL writeSuccess      = [fileData writeToFile:filePath options:0 error:&error];
     if(!writeSuccess)
     {
@@ -197,13 +197,13 @@ NSString * const kRENoBSDDevice    = @"No BSD device";
 }
 
 #pragma mark - I/O Level -
-+ (NSString*)generateIdentifierFromDeviceData:(REDeviceData*)deviceData
++ (NSString*)generateIdentifierFromDeviceData:(RUDeviceData*)deviceData
 {
     NSString *identifier = [NSString stringWithFormat:@"0x%x", deviceData->locationID];
     return identifier;
 }
 
-- (void)setupWithDeviceData:(REDeviceData*)deviceData
+- (void)setupWithDeviceData:(RUDeviceData*)deviceData
 {
     [self setDeviceData:deviceData];
     if(deviceData != NULL)
@@ -215,9 +215,9 @@ NSString * const kRENoBSDDevice    = @"No BSD device";
         IORegistryEntryGetPath(deviceData->ioService, kIOServicePlane, path);
         NSString *devicePath = [@(path) stringByAppendingString:@"/IOUSBInterface@0/IOUSBMassStorageClass/IOSCSIPeripheralDeviceNub/IOSCSIPeripheralDeviceType00/IOBlockStorageServices"];
         NSDictionary *dictionary = @{ @"DADevicePath" : devicePath };
-        DARegisterDiskEjectApprovalCallback(apSession, (__bridge CFDictionaryRef)(dictionary), REDADiskEjectApprovalCallback, (__bridge void *)(self));
-        DARegisterDiskAppearedCallback(apSession, (__bridge CFDictionaryRef)(dictionary), REDADiskAppearedCallback, (__bridge void *)(self));
-        DARegisterDiskDisappearedCallback(apSession, (__bridge CFDictionaryRef)(dictionary), REDADiskDisappearedCallback, (__bridge void *)(self));
+        DARegisterDiskEjectApprovalCallback(apSession, (__bridge CFDictionaryRef)(dictionary), RUDADiskEjectApprovalCallback, (__bridge void *)(self));
+        DARegisterDiskAppearedCallback(apSession, (__bridge CFDictionaryRef)(dictionary), RUDADiskAppearedCallback, (__bridge void *)(self));
+        DARegisterDiskDisappearedCallback(apSession, (__bridge CFDictionaryRef)(dictionary), RUDADiskDisappearedCallback, (__bridge void *)(self));
     }
     
     if(deviceData != NULL && [[self delegate] respondsToSelector:@selector(retrodeHardwareDidBecomeAvailable:)])
@@ -228,12 +228,12 @@ NSString * const kRENoBSDDevice    = @"No BSD device";
 
 - (NSString*)bsdDeviceName
 {
-    IfNotConnectedReturn(kRENoBSDDevice);
+    IfNotConnectedReturn(kRUNoBSDDevice);
     
     NSString *bsdName = nil;
     CFTypeRef bsdNameData = IORegistryEntrySearchCFProperty([self deviceData]->ioService, kIOServicePlane, CFSTR("BSD Name"), kCFAllocatorDefault, kIORegistryIterateRecursively);
     if (bsdNameData == NULL)
-        bsdName = kRENoBSDDevice;
+        bsdName = kRUNoBSDDevice;
     else
         bsdName = (__bridge_transfer NSString*)bsdNameData;
     return bsdName;
@@ -242,8 +242,8 @@ NSString * const kRENoBSDDevice    = @"No BSD device";
 - (NSString*)mountPath
 {
     NSDictionary *diskDescription = [self diskDescription];
-    if(!diskDescription) return kRENoBSDDevice;
-    return [[diskDescription objectForKey:(__bridge NSString*)kDADiskDescriptionVolumePathKey] path]?:kREDiskNotMounted;
+    if(!diskDescription) return kRUNoBSDDevice;
+    return [[diskDescription objectForKey:(__bridge NSString*)kDADiskDescriptionVolumePathKey] path]?:kRUDiskNotMounted;
 }
 
 - (void)unmountFilesystem
@@ -254,7 +254,7 @@ NSString * const kRENoBSDDevice    = @"No BSD device";
     DADiskRef    disk_ref = DADiskCreateFromBSDName(kCFAllocatorDefault, daSession, [[self bsdDeviceName] UTF8String]);
     if(disk_ref != NULL)
     {
-        DADiskUnmount(disk_ref, 0, REDADiskUnmountCallback, (__bridge void *)(self));
+        DADiskUnmount(disk_ref, 0, RUDADiskUnmountCallback, (__bridge void *)(self));
         CFRelease(disk_ref);
     }
 }
@@ -267,7 +267,7 @@ NSString * const kRENoBSDDevice    = @"No BSD device";
     DADiskRef    disk_ref = DADiskCreateFromBSDName(kCFAllocatorDefault, daSession, [[self bsdDeviceName] UTF8String]);
     if(disk_ref != NULL)
     {
-        DADiskMount(disk_ref, NULL, 0, REDADiskMountCallback, (__bridge void *)(self));
+        DADiskMount(disk_ref, NULL, 0, RUDADiskMountCallback, (__bridge void *)(self));
         CFRelease(disk_ref);
     }
 }
@@ -290,7 +290,7 @@ NSString * const kRENoBSDDevice    = @"No BSD device";
     
     NSDictionary *result  = nil;
     NSString *bsdDeviceName = [self bsdDeviceName];
-    if(bsdDeviceName == kRENoBSDDevice || bsdDeviceName == kREDiskNotMounted)
+    if(bsdDeviceName == kRUNoBSDDevice || bsdDeviceName == kRUDiskNotMounted)
         return nil;
     
     DADiskRef    disk_ref = DADiskCreateFromBSDName(kCFAllocatorDefault, daSession, [bsdDeviceName UTF8String]);
@@ -313,7 +313,7 @@ NSString * const kRENoBSDDevice    = @"No BSD device";
     return result;
 }
 
-- (void)RE_setupDASessions
+- (void)RU_setupDASessions
 {
     if(daSession == NULL)
     {
@@ -326,7 +326,7 @@ NSString * const kRENoBSDDevice    = @"No BSD device";
     }
 }
 
-- (void)RE_tearDownDASessions
+- (void)RU_tearDownDASessions
 {
     if(daSession != NULL)
     {
@@ -342,7 +342,7 @@ NSString * const kRENoBSDDevice    = @"No BSD device";
 }
 
 #pragma mark - Manager Private -
-- (void)setDelegate:(id<REREtrodeDelegate>)delegate
+- (void)setDelegate:(id<RURetrodeDelegate>)delegate
 {
     _delegate = delegate;
 }
@@ -350,7 +350,7 @@ NSString * const kRENoBSDDevice    = @"No BSD device";
 {
     DLog();
     [self setupWithDeviceData:NULL];
-    [self RE_tearDownDASessions];
+    [self RU_tearDownDASessions];
 
     if([[self delegate] respondsToSelector:@selector(retrodeDidDisconnect:)])
         [[self delegate] retrodeDidDisconnect:self];
@@ -358,40 +358,40 @@ NSString * const kRENoBSDDevice    = @"No BSD device";
     [self setDelegate:nil];
 }
 #pragma mark - C-Callbacks
-void REDADiskUnmountCallback(DADiskRef disk, DADissenterRef dissenter, void *self)
+void RUDADiskUnmountCallback(DADiskRef disk, DADissenterRef dissenter, void *self)
 {
     DLog();
 }
 
-void REDADiskMountCallback(DADiskRef disk, DADissenterRef dissenter, void *self)
+void RUDADiskMountCallback(DADiskRef disk, DADissenterRef dissenter, void *self)
 {
     DLog();
 }
 
-void REDADiskAppearedCallback(DADiskRef disk, void *self)
+void RUDADiskAppearedCallback(DADiskRef disk, void *self)
 {
-    RERetrode *retrode = (__bridge RERetrode*)self;
+    RURetrode *retrode = (__bridge RURetrode*)self;
     [retrode setIsMounted:YES];
     if([[retrode delegate] respondsToSelector:@selector(retrodeDidMount:)])
         [[retrode delegate] retrodeDidMount:retrode];
 }
 
-void REDADiskDisappearedCallback(DADiskRef disk, void *self)
+void RUDADiskDisappearedCallback(DADiskRef disk, void *self)
 {
-    RERetrode *retrode = (__bridge RERetrode*)self;
+    RURetrode *retrode = (__bridge RURetrode*)self;
     [retrode setIsMounted:NO];
     if([[retrode delegate] respondsToSelector:@selector(retrodeDidUnmount:)])
         [[retrode delegate] retrodeDidUnmount:retrode];
 }
 
-DADissenterRef REDADiskEjectApprovalCallback(DADiskRef disk, void *self)
+DADissenterRef RUDADiskEjectApprovalCallback(DADiskRef disk, void *self)
 {
     DLog();
     DADissenterRef dissenter = DADissenterCreate(kCFAllocatorDefault, kDAReturnSuccess, NULL);
     return dissenter;
 }
 
-DADissenterRef REDADiskUnmountApprovalCallback(DADiskRef disk,void *context)
+DADissenterRef RUDADiskUnmountApprovalCallback(DADiskRef disk,void *context)
 {
     return NULL;
 }

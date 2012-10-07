@@ -1,54 +1,54 @@
 //
-//  REFirmwareUpdater.m
+//  RUFirmwareUpdater.m
 //  Retrode Utility
 //
 //  Created by Christoph Leimbrock on 29.09.12.
 //  Copyright (c) 2012 Christoph Leimbrock. All rights reserved.
 //
 
-#import "REFirmwareUpdater.h"
+#import "RUFirmwareUpdater.h"
 
 #import "NSString+NSRangeAdditions.h"
 
-#import "RERetrode_Configuration.h"
-#import "RERetrode_IOLevel.h"
+#import "RURetrode_Configuration.h"
+#import "RURetrode_IOLevel.h"
 
 #pragma mark Updater Constants
-NSString * const REFirmwareUpdaterDidReloadVersions = @"RUFirmwareUpdaterDidReloadVersions";
-NSString * const REFirmwareUpdateErrorDomain = @"REFirmwareUpdateErrorDomain";
-const NSInteger kREFirmwareUpdateErrorOtherUpdateInProgress   = 1000;
-const NSInteger kREFirmwareUpdateErrorDeviceVersionMismatch   = 1001;
-const NSInteger kREFirmwareUpdateErrorVersionAlreadyInstalled = 1002;
-const NSInteger kREFirmwareUpdateErrorRetrodeNotConnected     = 1003;
-const NSInteger kREFirmwareUpdateErrorRetrodeNotInDFU         = 1004;
-const NSInteger kREFirmwareUpdateErrorExtrationFailed         = 1005;
-const NSInteger kREFirmwareUpdateErrorNoFirmwareFile          = 1006;
-const NSInteger kREFirmwareUpdateErrorMultipleFirmwareFiles   = 1007;
-const NSInteger kREFirmwareUpdateErrorNoDFUDevice             = 1008;
-const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
+NSString * const RUFirmwareUpdaterDidReloadVersions = @"RUFirmwareUpdaterDidReloadVersions";
+NSString * const RUFirmwareUpdateErrorDomain = @"RUFirmwareUpdateErrorDomain";
+const NSInteger kRUFirmwareUpdateErrorOtherUpdateInProgress   = 1000;
+const NSInteger kRUFirmwareUpdateErrorDeviceVersionMismatch   = 1001;
+const NSInteger kRUFirmwareUpdateErrorVersionAlreadyInstalled = 1002;
+const NSInteger kRUFirmwareUpdateErrorRetrodeNotConnected     = 1003;
+const NSInteger kRUFirmwareUpdateErrorRetrodeNotInDFU         = 1004;
+const NSInteger kRUFirmwareUpdateErrorExtrationFailed         = 1005;
+const NSInteger kRUFirmwareUpdateErrorNoFirmwareFile          = 1006;
+const NSInteger kRUFirmwareUpdateErrorMultipleFirmwareFiles   = 1007;
+const NSInteger kRUFirmwareUpdateErrorNoDFUDevice             = 1008;
+const NSInteger kRUFirmwareUpdateErrorDFUProgrammerFail       = 1009;
 
-#define kREUpdatePageURLString @"http://www.retrode.org/firmware"
+#define kRUUpdatePageURLString @"http://www.retrode.org/firmware"
 
 #pragma mark -
-@interface REFirmware ()
+@interface RUFirmware ()
 @property (strong) NSString *version;
 @property (strong) NSString *deviceVersion;
 @property (strong) NSURL    *url;
 @property (strong) NSArray  *releaseNotes;
 @property (strong) NSDate   *releaseDate;
 @end
-@interface REFirmwareUpdater ()
+@interface RUFirmwareUpdater ()
 @property (strong, readwrite) NSMutableArray      *availableFirmwareVersions;
 @property (strong, readwrite) NSMutableDictionary *currentFirmwareUpdate;
 @end
-@implementation REFirmwareUpdater
+@implementation RUFirmwareUpdater
 
-+ (REFirmwareUpdater*)sharedFirmwareUpdater
++ (RUFirmwareUpdater*)sharedFirmwareUpdater
 {
     static id sharedFirmwareUpdater = NULL;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedFirmwareUpdater = [[REFirmwareUpdater alloc] init];
+        sharedFirmwareUpdater = [[RUFirmwareUpdater alloc] init];
         [sharedFirmwareUpdater setAvailableFirmwareVersions:[NSMutableArray array]];
     });
     return sharedFirmwareUpdater;
@@ -56,7 +56,7 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
 
 - (BOOL)updateAvailableFirmwareVersionsWithError:(NSError**)outError
 {
-    NSURL         *updateURL = [NSURL URLWithString:kREUpdatePageURLString];
+    NSURL         *updateURL = [NSURL URLWithString:kRUUpdatePageURLString];
     NSXMLDocument *document  = [[NSXMLDocument alloc] initWithContentsOfURL:updateURL options:NSXMLDocumentTidyHTML error:outError];
     if(document == nil)
     {
@@ -87,9 +87,9 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     [regularExpression enumerateMatchesInString:releaseNotes options:0 range:[releaseNotes fullRange] usingBlock:
      ^ (NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
      {
-         NSString *version = [[self RE_resultOfPatternMatching:versionPattern inRange:[result range] ofString:releaseNotes] lastObject];
-         NSString *date    = [[self RE_resultOfPatternMatching:datePattern inRange:[result range] ofString:releaseNotes] lastObject];
-         NSArray  *notes   = [self RE_resultOfPatternMatching:notesPattern inRange:[result range] ofString:releaseNotes];
+         NSString *version = [[self RU_resultOfPatternMatching:versionPattern inRange:[result range] ofString:releaseNotes] lastObject];
+         NSString *date    = [[self RU_resultOfPatternMatching:datePattern inRange:[result range] ofString:releaseNotes] lastObject];
+         NSArray  *notes   = [self RU_resultOfPatternMatching:notesPattern inRange:[result range] ofString:releaseNotes];
          
          [versionsDict setValue:@{ @"date" : date, @"notes" : notes} forKey:version];
      }];
@@ -121,8 +121,8 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     void (^ parseDownloadLinksBlock) (id, NSUInteger, BOOL *) = ^(NSXMLNode *node, NSUInteger idx, BOOL *stop) {
         NSString   *link     = [[[node nodesForXPath:@"./@href" error:nil] lastObject] objectValue];
         NSRange    fullRange = [link fullRange];
-        NSString *retrodeVersion  = [[self RE_resultOfPatternMatching:retrodeVersionPattern inRange:fullRange ofString:link] lastObject];
-        NSString *firmwareVersion = [[self RE_resultOfPatternMatching:firmwareVersionPattern inRange:fullRange ofString:link] lastObject];
+        NSString *retrodeVersion  = [[self RU_resultOfPatternMatching:retrodeVersionPattern inRange:fullRange ofString:link] lastObject];
+        NSString *firmwareVersion = [[self RU_resultOfPatternMatching:firmwareVersionPattern inRange:fullRange ofString:link] lastObject];
         firmwareVersion = [firmwareVersion stringByReplacingOccurrencesOfString:@"-" withString:@" "];
         
         if(retrodeVersion != nil && firmwareVersion != nil)
@@ -130,7 +130,7 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
             NSDictionary *releaseInfo = [versionsDict valueForKey:firmwareVersion];
             if(releaseInfo)
             {
-                REFirmware *firmware = [[REFirmware alloc] init];
+                RUFirmware *firmware = [[RUFirmware alloc] init];
                 [firmware setDeviceVersion:retrodeVersion];
                 [firmware setVersion:firmwareVersion];
                 [firmware setReleaseNotes:[releaseInfo valueForKey:@"notes"]];
@@ -149,18 +149,18 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     [retrode1FirmwareNodes enumerateObjectsUsingBlock:parseDownloadLinksBlock];
     [retrode2FirmwareNodes enumerateObjectsUsingBlock:parseDownloadLinksBlock];
     
-    [(NSMutableArray*)[self availableFirmwareVersions] sortUsingComparator:^NSComparisonResult(REFirmware *obj1, REFirmware *obj2) {
+    [(NSMutableArray*)[self availableFirmwareVersions] sortUsingComparator:^NSComparisonResult(RUFirmware *obj1, RUFirmware *obj2) {
         NSComparisonResult deviceVersionResult = [[obj2 deviceVersion] compare:[obj1 deviceVersion]];
         if(deviceVersionResult == NSOrderedSame)
             deviceVersionResult = [[obj2 version] compare:[obj1 version]];
         return deviceVersionResult;
     }];
-    [[NSNotificationCenter defaultCenter] postNotificationName:REFirmwareUpdaterDidReloadVersions object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:RUFirmwareUpdaterDidReloadVersions object:self];
      
     return YES;
 }
 
-- (void)installFirmware:(REFirmware*)firmware toRetrode:(RERetrode*)retrode withCallback:(void (^)(double, id))callback
+- (void)installFirmware:(RUFirmware*)firmware toRetrode:(RURetrode*)retrode withCallback:(void (^)(double, id))callback
 {
     DLog();
     NSAssert(firmware!=nil && retrode!=nil, @"Invalid method call, you need to pass a firmware and a retrode.");
@@ -168,7 +168,7 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     if([self currentFirmwareUpdate] != nil)
     {
         // TODO: create user info for error
-        NSError *error = [NSError errorWithDomain:REFirmwareUpdateErrorDomain code:kREFirmwareUpdateErrorOtherUpdateInProgress userInfo:nil];
+        NSError *error = [NSError errorWithDomain:RUFirmwareUpdateErrorDomain code:kRUFirmwareUpdateErrorOtherUpdateInProgress userInfo:nil];
         callback(-1.0, error);
         return;
     }
@@ -179,7 +179,7 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     {
         [self setCurrentFirmwareUpdate:nil];
         // TODO: create user info for error
-        NSError *error = [NSError errorWithDomain:REFirmwareUpdateErrorDomain code:kREFirmwareUpdateErrorDeviceVersionMismatch userInfo:nil];
+        NSError *error = [NSError errorWithDomain:RUFirmwareUpdateErrorDomain code:kRUFirmwareUpdateErrorDeviceVersionMismatch userInfo:nil];
         callback(-1.0, error);
         return;
     }
@@ -188,7 +188,7 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     {
         [self setCurrentFirmwareUpdate:nil];
         // TODO: create user info for error
-        NSError *error = [NSError errorWithDomain:REFirmwareUpdateErrorDomain code:kREFirmwareUpdateErrorVersionAlreadyInstalled userInfo:nil];
+        NSError *error = [NSError errorWithDomain:RUFirmwareUpdateErrorDomain code:kRUFirmwareUpdateErrorVersionAlreadyInstalled userInfo:nil];
         callback(-1.0, error);
         return;        
     }
@@ -197,7 +197,7 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     {
         [self setCurrentFirmwareUpdate:nil];
         // TODO: create user info for error
-        NSError *error = [NSError errorWithDomain:REFirmwareUpdateErrorDomain code:kREFirmwareUpdateErrorRetrodeNotConnected userInfo:nil];
+        NSError *error = [NSError errorWithDomain:RUFirmwareUpdateErrorDomain code:kRUFirmwareUpdateErrorRetrodeNotConnected userInfo:nil];
         callback(-1.0, error);
         return;
     }
@@ -206,7 +206,7 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     {
         [self setCurrentFirmwareUpdate:nil];
         // TODO: create user info for error
-        NSError *error = [NSError errorWithDomain:REFirmwareUpdateErrorDomain code:kREFirmwareUpdateErrorRetrodeNotInDFU userInfo:nil];
+        NSError *error = [NSError errorWithDomain:RUFirmwareUpdateErrorDomain code:kRUFirmwareUpdateErrorRetrodeNotInDFU userInfo:nil];
         callback(-1.0, error);
         return;
     }
@@ -226,7 +226,7 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
 }
 #define CurrentCallback ((void (^)(double, id))[[self currentFirmwareUpdate] objectForKey:@"callback"])
 
-- (void)RE_extractAndInstallFirmwareAtPath:(NSString*)path
+- (void)RU_extractAndInstallFirmwareAtPath:(NSString*)path
 {
     DLog();
     CurrentCallback(0.0, @"Extracting");
@@ -242,7 +242,7 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     if([cmd terminationStatus] != 0)
     {
         // TODO: create user info for error
-        NSError *error = [NSError errorWithDomain:REFirmwareUpdateErrorDomain code:kREFirmwareUpdateErrorExtrationFailed userInfo:nil];
+        NSError *error = [NSError errorWithDomain:RUFirmwareUpdateErrorDomain code:kRUFirmwareUpdateErrorExtrationFailed userInfo:nil];
         CurrentCallback(-1.0, error);
         [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
         return;
@@ -251,10 +251,10 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
     CurrentCallback(1.0, @"Extracting");
     
-    [self RE_installFirmwareAtPath:targetPath];
+    [self RU_installFirmwareAtPath:targetPath];
 }
 
-- (void)RE_installFirmwareAtPath:(NSString*)path
+- (void)RU_installFirmwareAtPath:(NSString*)path
 {
     NSError *error = nil;
     if([[path pathExtension] isEqualTo:@""])
@@ -273,7 +273,7 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
         
         if([contents count] == 0)
         {
-            error = [NSError errorWithDomain:REFirmwareUpdateErrorDomain code:kREFirmwareUpdateErrorNoFirmwareFile userInfo:nil];
+            error = [NSError errorWithDomain:RUFirmwareUpdateErrorDomain code:kRUFirmwareUpdateErrorNoFirmwareFile userInfo:nil];
             CurrentCallback(-1.0, error);
             [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
             return;
@@ -281,7 +281,7 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
         
         if([contents count] > 1)
         {
-            error = [NSError errorWithDomain:REFirmwareUpdateErrorDomain code:kREFirmwareUpdateErrorMultipleFirmwareFiles userInfo:nil];
+            error = [NSError errorWithDomain:RUFirmwareUpdateErrorDomain code:kRUFirmwareUpdateErrorMultipleFirmwareFiles userInfo:nil];
             CurrentCallback(-1.0, error);
             [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
             return;
@@ -299,7 +299,7 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     if([cmd terminationStatus] == 1)
     {
         // TODO: create user info for error
-        NSError *error = [NSError errorWithDomain:REFirmwareUpdateErrorDomain code:kREFirmwareUpdateErrorNoDFUDevice userInfo:nil];
+        NSError *error = [NSError errorWithDomain:RUFirmwareUpdateErrorDomain code:kRUFirmwareUpdateErrorNoDFUDevice userInfo:nil];
         CurrentCallback(-1.0, error);
         [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
         return;
@@ -308,7 +308,7 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     if([cmd terminationStatus] != 0)
     {
         // TODO: create user info for error
-        NSError *error = [NSError errorWithDomain:REFirmwareUpdateErrorDomain code:kREFirmwareUpdateErrorDFUProgrammerFail userInfo:nil];
+        NSError *error = [NSError errorWithDomain:RUFirmwareUpdateErrorDomain code:kRUFirmwareUpdateErrorDFUProgrammerFail userInfo:nil];
         CurrentCallback(-1.0, error);
         [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
         return;
@@ -323,7 +323,7 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     if([cmd terminationStatus] != 0)
     {
         // TODO: create user info for error
-        NSError *error = [NSError errorWithDomain:REFirmwareUpdateErrorDomain code:kREFirmwareUpdateErrorDFUProgrammerFail userInfo:nil];
+        NSError *error = [NSError errorWithDomain:RUFirmwareUpdateErrorDomain code:kRUFirmwareUpdateErrorDFUProgrammerFail userInfo:nil];
         CurrentCallback(-1.0, error);
         [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
         return;
@@ -338,7 +338,7 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     if([cmd terminationStatus] != 0)
     {
         // TODO: create user info for error
-        NSError *error = [NSError errorWithDomain:REFirmwareUpdateErrorDomain code:kREFirmwareUpdateErrorDFUProgrammerFail userInfo:nil];
+        NSError *error = [NSError errorWithDomain:RUFirmwareUpdateErrorDomain code:kRUFirmwareUpdateErrorDFUProgrammerFail userInfo:nil];
         CurrentCallback(-1.0, error);
         [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
         return;
@@ -347,7 +347,7 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
 }
 
 #pragma mark - Helper
-- (NSArray*)RE_resultOfPatternMatching:(NSString*)pattern inRange:(NSRange)range ofString:(NSString*)string
+- (NSArray*)RU_resultOfPatternMatching:(NSString*)pattern inRange:(NSRange)range ofString:(NSString*)string
 {
     NSRegularExpression *regEx   = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
     NSArray             *result  = [regEx matchesInString:string options:0 range:range];
@@ -394,11 +394,11 @@ const NSInteger kREFirmwareUpdateErrorDFUProgrammerFail       = 1009;
 {
     DLog();
     CurrentCallback(1.0, @"Downloading");
-    [self RE_extractAndInstallFirmwareAtPath:[[self currentFirmwareUpdate] objectForKey:@"destination"]];
+    [self RU_extractAndInstallFirmwareAtPath:[[self currentFirmwareUpdate] objectForKey:@"destination"]];
 }
 @end
 
-@implementation REFirmware
+@implementation RUFirmware
 - (NSString*)description
 {
     unsigned long address = (unsigned long)self;

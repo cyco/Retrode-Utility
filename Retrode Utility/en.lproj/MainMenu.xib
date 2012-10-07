@@ -1320,7 +1320,7 @@
 				<string key="NSName">_NSMainMenu</string>
 			</object>
 			<object class="NSCustomObject" id="976324537">
-				<string key="NSClassName">REAppDelegate</string>
+				<string key="NSClassName">RUAppDelegate</string>
 			</object>
 			<object class="NSCustomObject" id="755631768">
 				<string key="NSClassName">NSFontManager</string>
@@ -1330,11 +1330,11 @@
 				<string key="NSWindowRect">{{196, 240}, {469, 178}}</string>
 				<int key="NSWTFlags">611845120</int>
 				<string key="NSWindowTitle">Window</string>
-				<string key="NSWindowClass">RESplashWindow</string>
+				<string key="NSWindowClass">RUSplashWindow</string>
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<object class="NSView" key="NSWindowView" id="28780052">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSCustomView" id="1038500059">
@@ -1346,6 +1346,7 @@
 									<int key="NSvFlags">260</int>
 									<string key="NSFrame">{{26, 11}, {182, 39}}</string>
 									<reference key="NSSuperview" ref="1038500059"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="229099099"/>
 									<bool key="NSViewIsLayerTreeHost">YES</bool>
 									<object class="NSShadow" key="NSViewShadow">
@@ -1392,6 +1393,7 @@
 									<int key="NSvFlags">292</int>
 									<string key="NSFrame">{{23, 53}, {188, 21}}</string>
 									<reference key="NSSuperview" ref="1038500059"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="181629944"/>
 									<string key="NSReuseIdentifierKey">_NS:1535</string>
 									<bool key="NSEnabled">YES</bool>
@@ -1432,6 +1434,7 @@
 									<int key="NSvFlags">292</int>
 									<string key="NSFrame">{{23, 52}, {188, 21}}</string>
 									<reference key="NSSuperview" ref="1038500059"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="673647242"/>
 									<string key="NSReuseIdentifierKey">_NS:1535</string>
 									<bool key="NSEnabled">YES</bool>
@@ -1453,6 +1456,7 @@
 							</array>
 							<string key="NSFrameSize">{400, 93}</string>
 							<reference key="NSSuperview" ref="28780052"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="110967350"/>
 							<bool key="NSViewIsLayerTreeHost">YES</bool>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -1467,6 +1471,7 @@
 									<int key="NSvFlags">268</int>
 									<string key="NSFrame">{{19, 48}, {188, 17}}</string>
 									<reference key="NSSuperview" ref="603705184"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="524071441"/>
 									<string key="NSReuseIdentifierKey">_NS:1535</string>
 									<bool key="NSEnabled">YES</bool>
@@ -1495,6 +1500,7 @@
 									<int key="NSvFlags">268</int>
 									<string key="NSFrame">{{19, 68}, {188, 17}}</string>
 									<reference key="NSSuperview" ref="603705184"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="75134807"/>
 									<string key="NSReuseIdentifierKey">_NS:1535</string>
 									<bool key="NSEnabled">YES</bool>
@@ -1515,6 +1521,7 @@
 									<int key="NSvFlags">268</int>
 									<string key="NSFrame">{{14, 90}, {180, 21}}</string>
 									<reference key="NSSuperview" ref="603705184"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="594661208"/>
 									<bool key="NSViewIsLayerTreeHost">YES</bool>
 									<object class="NSShadow" key="NSViewShadow">
@@ -1543,6 +1550,7 @@
 									<int key="NSvFlags">269</int>
 									<string key="NSFrame">{{105, 62}, {240, 21}}</string>
 									<reference key="NSSuperview" ref="603705184"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="1038500059"/>
 									<bool key="NSViewIsLayerTreeHost">YES</bool>
 									<object class="NSShadow" key="NSViewShadow">
@@ -1571,6 +1579,7 @@
 									<int key="NSvFlags">268</int>
 									<string key="NSFrame">{{68, 56}, {32, 32}}</string>
 									<reference key="NSSuperview" ref="603705184"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="807868523"/>
 									<string key="NSReuseIdentifierKey">_NS:945</string>
 									<int key="NSpiFlags">20490</int>
@@ -1579,6 +1588,7 @@
 							</array>
 							<string key="NSFrameSize">{400, 150}</string>
 							<reference key="NSSuperview" ref="28780052"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="255045018"/>
 							<bool key="NSViewIsLayerTreeHost">YES</bool>
 							<double key="NSViewAlphaValue">0.0</double>
@@ -1594,6 +1604,8 @@
 									<int key="NSvFlags">292</int>
 									<string key="NSFrame">{{114, 8}, {157, 25}}</string>
 									<reference key="NSSuperview" ref="229099099"/>
+									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSPopUpButtonCell" key="NSCell" id="954154583">
@@ -1644,6 +1656,7 @@
 									<int key="NSvFlags">292</int>
 									<string key="NSFrame">{{9, 8}, {97, 25}}</string>
 									<reference key="NSSuperview" ref="229099099"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="368952028"/>
 									<string key="NSReuseIdentifierKey">_NS:22</string>
 									<bool key="NSEnabled">YES</bool>
@@ -1666,6 +1679,7 @@
 							</array>
 							<string key="NSFrameSize">{400, 43}</string>
 							<reference key="NSSuperview" ref="28780052"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="554491775"/>
 							<bool key="NSViewIsLayerTreeHost">YES</bool>
 							<double key="NSViewAlphaValue">0.0</double>
@@ -1674,6 +1688,8 @@
 						</object>
 					</array>
 					<string key="NSFrameSize">{469, 178}</string>
+					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="603705184"/>
 					<string key="NSReuseIdentifierKey">_NS:20</string>
 				</object>
@@ -5906,7 +5922,7 @@
 				<string key="58.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="672.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="672.NSWindowTemplate.visibleAtLaunch"/>
-				<string key="673.CustomClassName">RESplashWindowContentView</string>
+				<string key="673.CustomClassName">RUSplashWindowContentView</string>
 				<string key="673.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="683.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="684.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -6005,7 +6021,7 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
-					<string key="className">REAppDelegate</string>
+					<string key="className">RUAppDelegate</string>
 					<string key="superclassName">NSObject</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="discardConfig:">id</string>
@@ -6122,23 +6138,23 @@
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/REAppDelegate.h</string>
+						<string key="minorKey">./Classes/RUAppDelegate.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">RESplashWindow</string>
+					<string key="className">RUSplashWindow</string>
 					<string key="superclassName">NSWindow</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/RESplashWindow.h</string>
+						<string key="minorKey">./Classes/RUSplashWindow.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">RESplashWindowContentView</string>
+					<string key="className">RUSplashWindowContentView</string>
 					<string key="superclassName">NSView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/RESplashWindowContentView.h</string>
+						<string key="minorKey">./Classes/RUSplashWindowContentView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
