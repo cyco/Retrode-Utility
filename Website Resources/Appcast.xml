@@ -9,13 +9,13 @@
 			<title>Version 0.2</title>
 			<sparkle:releaseNotesLink/>
 			<pubDate>Mo, 08 Oct 2012 21:04:15 +0200</pubDate>
-			<enclosure url="https://github.com/downloads/cyco/Retrode-Utility/ru.zip" sparkle:version="0.2" type="application/octet-stream" length="2978047" sparkle:dsaSignature="MC0CFQCMBii90WrToUVDqa1WUxxEl3YkFgIUY22u3T1lZKoIxwGSkKSulNjYYEw="/>
+			<enclosure url="https://github.com/downloads/cyco/Retrode-Utility/Retrode%20Utility%200.2.zip" sparkle:version="0.2" type="application/octet-stream" length="2978047" sparkle:dsaSignature="MC0CFQCMBii90WrToUVDqa1WUxxEl3YkFgIUY22u3T1lZKoIxwGSkKSulNjYYEw="/>
 		</item>
 		<item>
 			<title>Version 0.1</title>
 			<sparkle:releaseNotesLink/>
 			<pubDate>Mo, 08 Oct 2012 21:04:15 +0200</pubDate>
-			<enclosure url="http://cloud.github.com/downloads/cyco/Retrode-Utility/Retrode%20Utility%20(0.1).zip" sparkle:version="0.1" type="application/octet-stream" length="2978047" sparkle:dsaSignature="MC0CFQCMBii90WrToUVDqa1WUxxEl3YkFgIUY22u3T1lZKoIxwGSkKSulNjYYEw="/>
+			<enclosure url="https://github.com/downloads/cyco/Retrode-Utility/Retrode%20Utility%200.1.zip" sparkle:version="0.1" type="application/octet-stream" length="2978047" sparkle:dsaSignature="MC0CFQCMBii90WrToUVDqa1WUxxEl3YkFgIUY22u3T1lZKoIxwGSkKSulNjYYEw="/>
 		</item>
 	</channel>
 </rss>
