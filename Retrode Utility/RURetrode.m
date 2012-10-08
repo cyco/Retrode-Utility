@@ -220,10 +220,10 @@ NSString * const kRUNoBSDDevice    = @"No BSD device";
         DARegisterDiskDisappearedCallback(apSession, (__bridge CFDictionaryRef)(dictionary), RUDADiskDisappearedCallback, (__bridge void *)(self));
     }
     
-    if(deviceData != NULL && [[self delegate] respondsToSelector:@selector(retrodeHardwareDidBecomeAvailable:)])
-        [[self delegate] retrodeHardwareDidBecomeAvailable:self];
-    if(deviceData != NULL && [[self delegate] respondsToSelector:@selector(retrodeHardwareDidBecomeUnavailable:)])
-        [[self delegate] retrodeHardwareDidBecomeUnavailable:self];
+    if(deviceData != NULL)
+        [self RU_callDelegateMethod:@selector(retrodeHardwareDidBecomeAvailable:)];
+    else
+        [self RU_callDelegateMethod:@selector(retrodeHardwareDidBecomeUnavailable:)];
 }
 
 - (NSString*)bsdDeviceName
@@ -276,11 +276,12 @@ NSString * const kRUNoBSDDevice    = @"No BSD device";
 {
     [self willChangeValueForKey:@"DFUMode"];
     _DFUMode = dfuMode;
-    if(_DFUMode && [[self delegate] respondsToSelector:@selector(retrodeDidEnterDFUMode:)])
-        [[self delegate] retrodeDidEnterDFUMode:self];
-    else if(!_DFUMode && [[self delegate] respondsToSelector:@selector(retrodeDidLeaveDFUMode:)])
-        [[self delegate] retrodeDidLeaveDFUMode:self];
     [self didChangeValueForKey:@"DFUMode"];
+    
+    if(_DFUMode)
+        [self RU_callDelegateMethod:@selector(retrodeDidEnterDFUMode:)];
+    else
+        [self RU_callDelegateMethod:@selector(retrodeDidLeaveDFUMode:)];
 }
 
 #pragma mark I/O Level Helpers
@@ -352,10 +353,33 @@ NSString * const kRUNoBSDDevice    = @"No BSD device";
     [self setupWithDeviceData:NULL];
     [self RU_tearDownDASessions];
 
-    if([[self delegate] respondsToSelector:@selector(retrodeDidDisconnect:)])
-        [[self delegate] retrodeDidDisconnect:self];
+    [self RU_callDelegateMethod:@selector(retrodeDidDisconnect:)];
     
     [self setDelegate:nil];
+}
+#pragma mark - Private
+#define SelectorIs(x) selector==@selector(x)
+- (void)RU_callDelegateMethod:(SEL)selector
+{
+    if(![[self delegate] respondsToSelector:selector])
+        return;
+    
+    if(SelectorIs(retrodeDidConnect:))
+        ;
+    else if(SelectorIs(retrodeDidDisconnect:))
+        [[self delegate] retrodeDidDisconnect:self];
+    else if(SelectorIs(retrodeDidMount:))
+        [[self delegate] retrodeDidMount:self];
+    else if(SelectorIs(retrodeDidUnmount:))
+        [[self delegate] retrodeDidUnmount:self];
+    else if(SelectorIs(retrodeDidEnterDFUMode:))
+        [[self delegate] retrodeDidEnterDFUMode:self];
+    else if(SelectorIs(retrodeDidLeaveDFUMode:))
+        [[self delegate] retrodeDidLeaveDFUMode:self];
+    else if(SelectorIs(retrodeHardwareDidBecomeAvailable:))
+        [[self delegate] retrodeHardwareDidBecomeAvailable:self];
+    else if(SelectorIs(retrodeHardwareDidBecomeUnavailable::))
+        [[self delegate] retrodeHardwareDidBecomeUnavailable:self];
 }
 #pragma mark - C-Callbacks
 void RUDADiskUnmountCallback(DADiskRef disk, DADissenterRef dissenter, void *self)
@@ -372,16 +396,14 @@ void RUDADiskAppearedCallback(DADiskRef disk, void *self)
 {
     RURetrode *retrode = (__bridge RURetrode*)self;
     [retrode setIsMounted:YES];
-    if([[retrode delegate] respondsToSelector:@selector(retrodeDidMount:)])
-        [[retrode delegate] retrodeDidMount:retrode];
+    [retrode RU_callDelegateMethod:@selector(retrodeDidMount:)];
 }
 
 void RUDADiskDisappearedCallback(DADiskRef disk, void *self)
 {
     RURetrode *retrode = (__bridge RURetrode*)self;
     [retrode setIsMounted:NO];
-    if([[retrode delegate] respondsToSelector:@selector(retrodeDidUnmount:)])
-        [[retrode delegate] retrodeDidUnmount:retrode];
+    [retrode RU_callDelegateMethod:@selector(retrodeDidUnmount:)];    
 }
 
 DADissenterRef RUDADiskEjectApprovalCallback(DADiskRef disk, void *self)

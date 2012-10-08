@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version='2.0' xmlns:sparkle='http://www.andymatuschak.org/xml-namespaces/sparkle'  xmlns:dc='http://purl.org/dc/elements/1.1/'>
+   <channel>
+      <title>Disribution</title>
+      <link>https://github.com/cyco/Retrode-Utility/raw/master/Website%20Resources/Appcast.xml</link>
+      <description>Most recent changes with links to updates.</description>
+      <language>en</language>
+	 <item>
+			<title>Version 0.2</title>
+			<sparkle:releaseNotesLink></sparkle:releaseNotesLink>
+			<pubDate>Mo, 08 Oct 2012 21:04:15 +0200</pubDate>
+			<enclosure
+				url='https://github.com/downloads/cyco/Retrode-Utility/Retrode%20Utility%20(0.2).zip'
+				sparkle:version='0.2'
+				type='application/octet-stream'
+				length='2978047'
+				sparkle:dsaSignature='MC0CFQCMBii90WrToUVDqa1WUxxEl3YkFgIUY22u3T1lZKoIxwGSkKSulNjYYEw='
+			/>
+		</item>
+		<item>
+			<title>Version 0.1</title>
+			<sparkle:releaseNotesLink></sparkle:releaseNotesLink>
+			<pubDate>Mo, 08 Oct 2012 21:04:15 +0200</pubDate>
+			<enclosure
+				url='https://github.com/downloads/cyco/Retrode-Utility/Retrode%20Utility%20(0.1).zip'
+				sparkle:version='0.1'
+				type='application/octet-stream'
+				length='2978047'
+				sparkle:dsaSignature='MC0CFQCMBii90WrToUVDqa1WUxxEl3YkFgIUY22u3T1lZKoIxwGSkKSulNjYYEw='
+			/>
+		</item>
+   </channel>
+</rss>

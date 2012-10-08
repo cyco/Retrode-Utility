@@ -16,3 +16,5 @@
 #define DLog(format, ...) do {} while (0)
 #define DLogDeprecated() do {} while (0)
 #endif
+
+#define ComfortMode [[NSUserDefaults standardUserDefaults] boolForKey:@"Comfort Mode"]

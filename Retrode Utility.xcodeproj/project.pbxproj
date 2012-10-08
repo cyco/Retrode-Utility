@@ -12,10 +12,12 @@
 		8317DD621621990E00EDEFF3 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317DD611621990E00EDEFF3 /* Quartz.framework */; };
 		83515AA4161E4301009ADF10 /* dfu-programmer in Resources */ = {isa = PBXBuildFile; fileRef = 83515AA3161E4301009ADF10 /* dfu-programmer */; };
 		8356A2C41616603900377E4B /* DiskArbitration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8356A2C31616603900377E4B /* DiskArbitration.framework */; };
+		8371684816234E66004D3B10 /* icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 8371684716234E66004D3B10 /* icon.iconset */; };
+		8371684B16234EB4004D3B10 /* Retrode 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8371684A16234EB4004D3B10 /* Retrode 2@2x.png */; };
+		8371684E16235224004D3B10 /* libusb-1.0.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 8371684C162351FB004D3B10 /* libusb-1.0.0.dylib */; };
 		8375A20D1615DB4A004FA5AE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8375A20C1615DB4A004FA5AE /* Cocoa.framework */; };
 		8375A2171615DB4A004FA5AE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8375A2151615DB4A004FA5AE /* InfoPlist.strings */; };
 		8375A2191615DB4A004FA5AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375A2181615DB4A004FA5AE /* main.m */; };
-		8375A21D1615DB4A004FA5AE /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8375A21B1615DB4A004FA5AE /* Credits.rtf */; };
 		8375A2201615DB4A004FA5AE /* RUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375A21F1615DB4A004FA5AE /* RUAppDelegate.m */; };
 		8375A2231615DB4A004FA5AE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8375A2211615DB4A004FA5AE /* MainMenu.xib */; };
 		8375A22B1615DB60004FA5AE /* RURetrodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375A22A1615DB60004FA5AE /* RURetrodeManager.m */; };
@@ -26,8 +28,8 @@
 		8396086B162235E700FE6EDE /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8396086A162235E700FE6EDE /* Sparkle.framework */; };
 		8396086D162235EF00FE6EDE /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8396086A162235E700FE6EDE /* Sparkle.framework */; };
 		8396086F1622371000FE6EDE /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 8396086E1622371000FE6EDE /* dsa_pub.pem */; };
+		83B47A1B16230839001C7D13 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 83B47A1A16230839001C7D13 /* Credits.rtf */; };
 		83C888891620C919006FF1E0 /* NS(Attributed)String+Geometrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C888881620C919006FF1E0 /* NS(Attributed)String+Geometrics.m */; };
-		83DBC5B6162243E60048C51F /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 83DBC5B5162243E60048C51F /* icon.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +56,9 @@
 		83515AA3161E4301009ADF10 /* dfu-programmer */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "dfu-programmer"; sourceTree = "<group>"; };
 		8356A2C116164B9000377E4B /* RURetrode_IOLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RURetrode_IOLevel.h; sourceTree = "<group>"; };
 		8356A2C31616603900377E4B /* DiskArbitration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiskArbitration.framework; path = System/Library/Frameworks/DiskArbitration.framework; sourceTree = SDKROOT; };
+		8371684716234E66004D3B10 /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = icon.iconset; sourceTree = "<group>"; };
+		8371684A16234EB4004D3B10 /* Retrode 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Retrode 2@2x.png"; sourceTree = "<group>"; };
+		8371684C162351FB004D3B10 /* libusb-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libusb-1.0.0.dylib"; sourceTree = "<group>"; };
 		8375A2081615DB4A004FA5AE /* Retrode Utility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Retrode Utility.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8375A20C1615DB4A004FA5AE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8375A20F1615DB4A004FA5AE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -63,7 +68,6 @@
 		8375A2161615DB4A004FA5AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8375A2181615DB4A004FA5AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8375A21A1615DB4A004FA5AE /* RetrodeUtility-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RetrodeUtility-Prefix.pch"; sourceTree = "<group>"; };
-		8375A21C1615DB4A004FA5AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		8375A21E1615DB4A004FA5AE /* RUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUAppDelegate.h; sourceTree = "<group>"; };
 		8375A21F1615DB4A004FA5AE /* RUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUAppDelegate.m; sourceTree = "<group>"; };
 		8375A2221615DB4A004FA5AE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -77,9 +81,9 @@
 		837B69E3161EEE4F003B93D9 /* Retrode 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Retrode 2.png"; sourceTree = "<group>"; };
 		8396086A162235E700FE6EDE /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		8396086E1622371000FE6EDE /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		83B47A1A16230839001C7D13 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		83C888871620C919006FF1E0 /* NS(Attributed)String+Geometrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NS(Attributed)String+Geometrics.h"; sourceTree = "<group>"; };
 		83C888881620C919006FF1E0 /* NS(Attributed)String+Geometrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NS(Attributed)String+Geometrics.m"; sourceTree = "<group>"; };
-		83DBC5B5162243E60048C51F /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,7 +171,10 @@
 		8375A2131615DB4A004FA5AE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				83DBC5B5162243E60048C51F /* icon.icns */,
+				8371684C162351FB004D3B10 /* libusb-1.0.0.dylib */,
+				8371684A16234EB4004D3B10 /* Retrode 2@2x.png */,
+				8371684716234E66004D3B10 /* icon.iconset */,
+				83B47A1A16230839001C7D13 /* Credits.rtf */,
 				8396086E1622371000FE6EDE /* dsa_pub.pem */,
 				837B69E3161EEE4F003B93D9 /* Retrode 2.png */,
 				83515AA3161E4301009ADF10 /* dfu-programmer */,
@@ -175,7 +182,6 @@
 				8375A2151615DB4A004FA5AE /* InfoPlist.strings */,
 				8375A2181615DB4A004FA5AE /* main.m */,
 				8375A21A1615DB4A004FA5AE /* RetrodeUtility-Prefix.pch */,
-				8375A21B1615DB4A004FA5AE /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -207,6 +213,7 @@
 				8375A2051615DB4A004FA5AE /* Frameworks */,
 				8375A2061615DB4A004FA5AE /* Resources */,
 				83515AB0161E5596009ADF10 /* CopyFiles */,
+				8371684F1623522C004D3B10 /* Relink DFU-Programmer */,
 			);
 			buildRules = (
 			);
@@ -249,17 +256,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8371684E16235224004D3B10 /* libusb-1.0.0.dylib in Resources */,
 				8375A2171615DB4A004FA5AE /* InfoPlist.strings in Resources */,
-				8375A21D1615DB4A004FA5AE /* Credits.rtf in Resources */,
 				8375A2231615DB4A004FA5AE /* MainMenu.xib in Resources */,
 				83515AA4161E4301009ADF10 /* dfu-programmer in Resources */,
 				837B69E4161EEE4F003B93D9 /* Retrode 2.png in Resources */,
 				8396086F1622371000FE6EDE /* dsa_pub.pem in Resources */,
-				83DBC5B6162243E60048C51F /* icon.icns in Resources */,
+				83B47A1B16230839001C7D13 /* Credits.rtf in Resources */,
+				8371684816234E66004D3B10 /* icon.iconset in Resources */,
+				8371684B16234EB4004D3B10 /* Retrode 2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8371684F1623522C004D3B10 /* Relink DFU-Programmer */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Relink DFU-Programmer";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ABS_PATH=\"/usr/local/opt/libusb/lib/libusb-1.0.0.dylib\"\nREL_PATH=\"@executable_path/../Resources/libusb-1.0.0.dylib\"\n\ninstall_name_tool -change \"$ABS_PATH\" \"$REL_PATH\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION/Contents/Resources/dfu-programmer\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8375A2041615DB4A004FA5AE /* Sources */ = {
@@ -286,14 +312,6 @@
 				8375A2161615DB4A004FA5AE /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		8375A21B1615DB4A004FA5AE /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8375A21C1615DB4A004FA5AE /* en */,
-			);
-			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
 		8375A2211615DB4A004FA5AE /* MainMenu.xib */ = {
@@ -375,7 +393,13 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Retrode Utility/RetrodeUtility-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Retrode Utility\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SPARKLE_PRIVATE_KEY_PATH = "$PROJECT_DIR/../Signing Tools/dsa_priv.pem";
+				SPARKLE_SIGN_UPDATE_SCRIPT = "$PROJECT_DIR/../Signing Tools/sign_update.rb";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -391,7 +415,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retrode Utility/RetrodeUtility-Prefix.pch";
 				INFOPLIST_FILE = "Retrode Utility/RetrodeUtility-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Retrode Utility\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SPARKLE_PRIVATE_KEY_PATH = "$PROJECT_DIR/../Signing Tools/dsa_priv.pem";
+				SPARKLE_SIGN_UPDATE_SCRIPT = "$PROJECT_DIR/../Signing Tools/sign_update.rb";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
