@@ -57,7 +57,7 @@ NSString * const kRUCopyFileToRetrodeNotificationName = @"kRUCopyFileToRetrodeNo
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){ [[RURetrodeManager sharedManager] startRetrodeSupport]; });
     
-    [[RUFirmwareUpdater sharedFirmwareUpdater] performSelectorInBackground:@selector(updateAvailableFirmwareVersionsWithError:) withObject:nil];
+    [[RUFirmwareUpdater sharedFirmwareUpdater] updateAvailableFirmwareVersionsWithError:nil];
     
     
     NSViewController *viewController = [[NSViewController alloc] initWithNibName:@"fileSelectionViewController" bundle:[NSBundle mainBundle]];
@@ -184,7 +184,8 @@ NSString * const kRUCopyFileToRetrodeNotificationName = @"kRUCopyFileToRetrodeNo
                 if([status isEqualTo:@"Downloading"])
                 {
                     [[self firmwareProgressIndicator] setDoubleValue:progress/3.0];
-                } else if([status isEqualTo:@"Extracting"])
+                }
+                else if([status isEqualTo:@"Extracting"])
                 {
                     [[self firmwareProgressIndicator] setDoubleValue:1/3.0+progress/3.0];
                 } else

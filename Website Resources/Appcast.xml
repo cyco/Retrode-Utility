@@ -6,6 +6,12 @@
 		<description>Most recent changes with links to updates.</description>
 		<language>en</language>
 		<item>
+			<title>Version 0.4</title>
+			<sparkle:releaseNotesLink>https://github.com/downloads/cyco/Retrode-Utility/Release%20Notes%200.4.html</sparkle:releaseNotesLink>
+			<pubDate>Fr, 12 Oct 2012 18:13:01 +0200</pubDate>
+			<enclosure url="https://github.com/downloads/cyco/Retrode-Utility/Retrode Utility 0.4.zip" sparkle:version="0.4" type="application/octet-stream" length="2978047" sparkle:dsaSignature="MCwCFCwD0EYQC5qOVYSbs7zVR/cNNJMFAhQ1PiL3iwmS764hYDCNsIBJiOA+9Q=="/>
+		</item>
+		<item>
 			<title>Version 0.3</title>
 			<sparkle:releaseNotesLink>https://github.com/downloads/cyco/Retrode-Utility/Release%20Notes%200.3.html</sparkle:releaseNotesLink>
 			<pubDate>Fr, 12 Oct 2012 18:13:01 +0200</pubDate>

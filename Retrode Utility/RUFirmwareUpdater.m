@@ -114,7 +114,7 @@ const NSInteger kRUFirmwareUpdateErrorDFUProgrammerFail       = 1009;
         return NO;
     }
     
-    [self setAvailableFirmwareVersions:[NSMutableArray array]];
+    NSMutableArray *availableFirmwareVersions = [NSMutableArray array];
     
     NSString *retrodeVersionPattern  = @"(?<=files/firmware/Retrode)\\d";
     NSString *firmwareVersionPattern = [versionPattern stringByReplacingOccurrencesOfString:@"\\s" withString:@"-"];
@@ -141,7 +141,7 @@ const NSInteger kRUFirmwareUpdateErrorDFUProgrammerFail       = 1009;
                 NSDate *date = [dateFormatter dateFromString:[releaseInfo valueForKey:@"date"]];
                 [firmware setReleaseDate:date];
                 
-                [(NSMutableArray*)[self availableFirmwareVersions] addObject:firmware];
+                [availableFirmwareVersions addObject:firmware];
             }
         }
     };
@@ -149,14 +149,16 @@ const NSInteger kRUFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     [retrode1FirmwareNodes enumerateObjectsUsingBlock:parseDownloadLinksBlock];
     [retrode2FirmwareNodes enumerateObjectsUsingBlock:parseDownloadLinksBlock];
     
-    [(NSMutableArray*)[self availableFirmwareVersions] sortUsingComparator:^NSComparisonResult(RUFirmware *obj1, RUFirmware *obj2) {
+    [(NSMutableArray*)availableFirmwareVersions sortUsingComparator:^NSComparisonResult(RUFirmware *obj1, RUFirmware *obj2) {
         NSComparisonResult deviceVersionResult = [[obj2 deviceVersion] compare:[obj1 deviceVersion]];
         if(deviceVersionResult == NSOrderedSame)
             deviceVersionResult = [[obj2 version] compare:[obj1 version]];
         return deviceVersionResult;
     }];
+    
+    [self setAvailableFirmwareVersions:availableFirmwareVersions];
     [[NSNotificationCenter defaultCenter] postNotificationName:RUFirmwareUpdaterDidReloadVersions object:self];
-     
+    
     return YES;
 }
 

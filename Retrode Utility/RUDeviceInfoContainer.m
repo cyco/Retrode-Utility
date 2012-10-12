@@ -91,7 +91,7 @@
     [self setDraggingActive:NO];
 }
 
-#define LogAndReturn(VAL, REASON) { DLog(@"%@", REASON); return VAL;}
+#define LogAndReturn(VAL, REASON) return VAL
 - (BOOL)RU_draggingIsValid:(id<NSDraggingInfo>)sender
 {
     // For dragging to be valid we need a .srm file that is not already on the retrode

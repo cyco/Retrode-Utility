@@ -218,7 +218,7 @@ BOOL addDevice(void *refCon, io_service_t usbDevice)
     error = (*deviceDataRef->deviceInterface)->GetDeviceProduct(deviceDataRef->deviceInterface, &productID);
     assert(error == noErr);
     NSString *deviceVersion;
-    BOOL isDFUDevice;
+    BOOL isDFUDevice = NO;
     if(productID == kRUProductIDVersion1)
         deviceVersion = @"1";
     else if(productID == kRUProductIDVersion2)
@@ -256,7 +256,9 @@ BOOL addDevice(void *refCon, io_service_t usbDevice)
     if(isDFUDevice)
     {
         DLog(@"found dfu device");
-    } else {
+    }
+    else
+    {
         [retrode setDeviceVersion:deviceVersion];
         DLog(@"found normal device");
     }
