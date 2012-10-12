@@ -28,7 +28,8 @@
 #define kRUConfigurationFileName @"RETRODE.CFG"
 
 const int64_t kRUDisconnectDelay   = 1.0;
-const int32_t kRUVendorIDVersion2  = 0x0403;
+const int32_t kRUVendorID  = 0x0403;
+const int32_t kRUProductIDVersion1 = 0x97c0;
 const int32_t kRUProductIDVersion2 = 0x97c1;
 
 const int32_t kRUVendorIDVersion2DFU  = 0x03eb;
@@ -103,14 +104,18 @@ NSString * const kRUNoBSDDevice    = @"No BSD device";
     NSString * const versionPattern = @"(?<=Retrode\\s)\\d*\\.\\d+\\w*(\\s\\w+)?";
     NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern:versionPattern options:0 error:&error];
     NSArray *matches = [expression matchesInString:firmwareLine options:0 range:[firmwareLine fullRange]];
+    NSString *firmwareVersion;
     if([matches count] != 1)
     {
-        // TODO: Create proper error
-        DLog(@"Unkown Firmware Version, that's a very bad sign");
-        return;
+        // FIXME: set firmware version to "UnkownFirmware" constant
+        // then replace with last version that doesn't propagate this later
+        firmwareVersion = @"0.17b";
     }
-    NSTextCheckingResult *versionMatch = [matches lastObject];
-    NSString *firmwareVersion          = [firmwareLine substringWithRange:[versionMatch range]];
+    else
+    {
+        NSTextCheckingResult *versionMatch = [matches lastObject];
+        firmwareVersion = [firmwareLine substringWithRange:[versionMatch range]];
+    }
      // Convert early firmware version that start with .xx to 0.xx
     if([firmwareVersion characterAtIndex:0] == '.')
         firmwareVersion = [NSString stringWithFormat:@"0%@", firmwareVersion];
@@ -299,16 +304,6 @@ NSString * const kRUNoBSDDevice    = @"No BSD device";
     {
         result = (__bridge_transfer NSDictionary*)DADiskCopyDescription(disk_ref);
         CFRelease(disk_ref);
-    }
-
-    if([self deviceVersion] == nil)
-    {
-        NSString *deviceVersionPattern    = @"(?<=Retrode\\s)\\d+";
-        NSString *deviceVersionBase       = [result objectForKey:@"DAMediaName"];
-        NSRegularExpression  *regExp      = [NSRegularExpression regularExpressionWithPattern:deviceVersionPattern options:0 error:nil];
-        NSTextCheckingResult *deviceMatch = [regExp firstMatchInString:deviceVersionBase options:0 range:[deviceVersionBase fullRange]];
-        NSString *deviceVersion = [deviceVersionBase substringWithRange:[deviceMatch range]];
-        [self setDeviceVersion:deviceVersion];
     }
     
     return result;

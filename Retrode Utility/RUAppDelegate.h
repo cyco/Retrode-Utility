@@ -10,7 +10,8 @@
 #import "RURetrodeManager.h"
 #import "RURetrode.h"
 #import "RUSplashWindow.h"
-@interface RUAppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate, RURetrodeDelegate, NSDrawerDelegate>
+extern NSString  * const kRUCopyFileToRetrodeNotificationName;
+@interface RUAppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate, RURetrodeDelegate, NSDrawerDelegate, NSURLDownloadDelegate>
 
 @property BOOL firmwareUpdateInProgress;
 #pragma mark - 
@@ -30,6 +31,8 @@
 @property IBOutlet NSTextField    *firmwareFailReasonField;
 @property IBOutlet NSProgressIndicator *firmwareProgressIndicator;
 @property IBOutlet NSView         *firmwareFinishedView;
+
+@property IBOutlet NSViewController *fileSelectionViewController;
 #pragma mark - User Interface -
 - (IBAction)firmwareButtonAction:(id)sender;
 - (IBAction)installFirmware:(id)sender;

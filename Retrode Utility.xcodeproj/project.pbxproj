@@ -12,6 +12,8 @@
 		8317DD621621990E00EDEFF3 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317DD611621990E00EDEFF3 /* Quartz.framework */; };
 		83515AA4161E4301009ADF10 /* dfu-programmer in Resources */ = {isa = PBXBuildFile; fileRef = 83515AA3161E4301009ADF10 /* dfu-programmer */; };
 		8356A2C41616603900377E4B /* DiskArbitration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8356A2C31616603900377E4B /* DiskArbitration.framework */; };
+		836D5A641624BA0900D40CEA /* RUDeviceInfoContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D5A631624BA0900D40CEA /* RUDeviceInfoContainer.m */; };
+		836D5A721624D60300D40CEA /* RUImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D5A711624D60300D40CEA /* RUImageView.m */; };
 		8371684816234E66004D3B10 /* icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 8371684716234E66004D3B10 /* icon.iconset */; };
 		8371684B16234EB4004D3B10 /* Retrode 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8371684A16234EB4004D3B10 /* Retrode 2@2x.png */; };
 		8371684E16235224004D3B10 /* libusb-1.0.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 8371684C162351FB004D3B10 /* libusb-1.0.0.dylib */; };
@@ -28,6 +30,7 @@
 		8396086B162235E700FE6EDE /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8396086A162235E700FE6EDE /* Sparkle.framework */; };
 		8396086D162235EF00FE6EDE /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8396086A162235E700FE6EDE /* Sparkle.framework */; };
 		8396086F1622371000FE6EDE /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 8396086E1622371000FE6EDE /* dsa_pub.pem */; };
+		839F22EF1625803400C06D56 /* fileSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 839F22EE1625803400C06D56 /* fileSelectionViewController.xib */; };
 		83B47A1B16230839001C7D13 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 83B47A1A16230839001C7D13 /* Credits.rtf */; };
 		83C888891620C919006FF1E0 /* NS(Attributed)String+Geometrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C888881620C919006FF1E0 /* NS(Attributed)String+Geometrics.m */; };
 /* End PBXBuildFile section */
@@ -56,6 +59,10 @@
 		83515AA3161E4301009ADF10 /* dfu-programmer */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "dfu-programmer"; sourceTree = "<group>"; };
 		8356A2C116164B9000377E4B /* RURetrode_IOLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RURetrode_IOLevel.h; sourceTree = "<group>"; };
 		8356A2C31616603900377E4B /* DiskArbitration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiskArbitration.framework; path = System/Library/Frameworks/DiskArbitration.framework; sourceTree = SDKROOT; };
+		836D5A621624BA0900D40CEA /* RUDeviceInfoContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUDeviceInfoContainer.h; sourceTree = "<group>"; };
+		836D5A631624BA0900D40CEA /* RUDeviceInfoContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUDeviceInfoContainer.m; sourceTree = "<group>"; };
+		836D5A701624D60300D40CEA /* RUImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUImageView.h; sourceTree = "<group>"; };
+		836D5A711624D60300D40CEA /* RUImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUImageView.m; sourceTree = "<group>"; };
 		8371684716234E66004D3B10 /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = icon.iconset; sourceTree = "<group>"; };
 		8371684A16234EB4004D3B10 /* Retrode 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Retrode 2@2x.png"; sourceTree = "<group>"; };
 		8371684C162351FB004D3B10 /* libusb-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libusb-1.0.0.dylib"; sourceTree = "<group>"; };
@@ -81,6 +88,7 @@
 		837B69E3161EEE4F003B93D9 /* Retrode 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Retrode 2.png"; sourceTree = "<group>"; };
 		8396086A162235E700FE6EDE /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		8396086E1622371000FE6EDE /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		839F22EE1625803400C06D56 /* fileSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = fileSelectionViewController.xib; sourceTree = "<group>"; };
 		83B47A1A16230839001C7D13 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		83C888871620C919006FF1E0 /* NS(Attributed)String+Geometrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NS(Attributed)String+Geometrics.h"; sourceTree = "<group>"; };
 		83C888881620C919006FF1E0 /* NS(Attributed)String+Geometrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NS(Attributed)String+Geometrics.m"; sourceTree = "<group>"; };
@@ -111,6 +119,17 @@
 				830C011616172907007BEF28 /* NSString+NSRangeAdditions.m */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		836D5A731624D74700D40CEA /* Custom Controls */ = {
+			isa = PBXGroup;
+			children = (
+				836D5A621624BA0900D40CEA /* RUDeviceInfoContainer.h */,
+				836D5A631624BA0900D40CEA /* RUDeviceInfoContainer.m */,
+				836D5A701624D60300D40CEA /* RUImageView.h */,
+				836D5A711624D60300D40CEA /* RUImageView.m */,
+			);
+			name = "Custom Controls";
 			sourceTree = "<group>";
 		};
 		8375A1FD1615DB4A004FA5AE = {
@@ -160,6 +179,7 @@
 				830C0114161728F8007BEF28 /* Utilities */,
 				8375A21E1615DB4A004FA5AE /* RUAppDelegate.h */,
 				8375A21F1615DB4A004FA5AE /* RUAppDelegate.m */,
+				836D5A731624D74700D40CEA /* Custom Controls */,
 				837B69DE161EE649003B93D9 /* RUSplashWindow.h */,
 				837B69DF161EE649003B93D9 /* RUSplashWindow.m */,
 				8375A2211615DB4A004FA5AE /* MainMenu.xib */,
@@ -171,6 +191,7 @@
 		8375A2131615DB4A004FA5AE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				839F22EE1625803400C06D56 /* fileSelectionViewController.xib */,
 				8371684C162351FB004D3B10 /* libusb-1.0.0.dylib */,
 				8371684A16234EB4004D3B10 /* Retrode 2@2x.png */,
 				8371684716234E66004D3B10 /* icon.iconset */,
@@ -230,7 +251,7 @@
 		8375A1FF1615DB4A004FA5AE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = RE;
+				CLASSPREFIX = RU;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Christoph Leimbrock";
 			};
@@ -265,6 +286,7 @@
 				83B47A1B16230839001C7D13 /* Credits.rtf in Resources */,
 				8371684816234E66004D3B10 /* icon.iconset in Resources */,
 				8371684B16234EB4004D3B10 /* Retrode 2@2x.png in Resources */,
+				839F22EF1625803400C06D56 /* fileSelectionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +322,8 @@
 				830C011A16173C57007BEF28 /* RUFirmwareUpdater.m in Sources */,
 				837B69E0161EE649003B93D9 /* RUSplashWindow.m in Sources */,
 				83C888891620C919006FF1E0 /* NS(Attributed)String+Geometrics.m in Sources */,
+				836D5A641624BA0900D40CEA /* RUDeviceInfoContainer.m in Sources */,
+				836D5A721624D60300D40CEA /* RUImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

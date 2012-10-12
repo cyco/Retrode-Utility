@@ -55,13 +55,13 @@ const NSInteger kRUFirmwareUpdateErrorDFUProgrammerFail       = 1009;
 }
 
 - (BOOL)updateAvailableFirmwareVersionsWithError:(NSError**)outError
-{
+{    
     NSURL         *updateURL = [NSURL URLWithString:kRUUpdatePageURLString];
     NSXMLDocument *document  = [[NSXMLDocument alloc] initWithContentsOfURL:updateURL options:NSXMLDocumentTidyHTML error:outError];
     if(document == nil)
     {
         DLog(@"Could not download or parse update page.");
-        DLog(@"%@", *outError);
+        DLog(@"%@", outError!=NULL?*outError:nil);
         return NO;
     }
     
@@ -69,7 +69,7 @@ const NSInteger kRUFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     if(releaseNodes == nil)
     {
         DLog(@"Could not get release notes.");
-        DLog(@"%@", *outError);
+        DLog(@"%@", outError!=NULL?*outError:nil);
         return NO;
     }
     
@@ -99,14 +99,14 @@ const NSInteger kRUFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     if(!retrode2FirmwareNodes)
     {
         DLog(@"Could not get firmware nodes for retrode version 2");
-        DLog(@"%@", *outError);
+        DLog(@"%@", outError!=NULL?*outError:nil);
     }
     
     NSArray *retrode1FirmwareNodes = [document nodesForXPath:@"/html/body/div/div/table/tr[2]/td[2]/div/div[2]/ul[3]/li/a" error:outError];
     if(!retrode1FirmwareNodes)
     {
         DLog(@"Could not get firmware nodes for retrode version 1");
-        DLog(@"%@", *outError);
+        DLog(@"%@", outError!=NULL?*outError:nil);
     }
     
     if(retrode1FirmwareNodes == nil && retrode2FirmwareNodes == nil)

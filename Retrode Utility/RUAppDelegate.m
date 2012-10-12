@@ -15,8 +15,14 @@
 
 #import "NS(Attributed)String+Geometrics.h"
 #import <Quartz/Quartz.h>
-@implementation RUAppDelegate
 
+NSString * const kRUCopyFileToRetrodeNotificationName = @"kRUCopyFileToRetrodeNotificationName";
+@interface RUAppDelegate ()
+{
+    NSMutableData *firmwareUpdateData;
+}
+@end
+@implementation RUAppDelegate
 - (id)init
 {
     self = [super init];
@@ -28,6 +34,9 @@
         [sharedFirmwareUpdater addObserver:self forKeyPath:@"availableFirmwareVersions" options:0 context:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrodesDidConnect:) name:RURetrodesDidConnectNotificationName object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(copyFile:) name:kRUCopyFileToRetrodeNotificationName object:nil];
+        
+        firmwareUpdateData = [NSMutableData data];
     }
     return self;
 }
@@ -39,18 +48,21 @@
     
     RUFirmwareUpdater *sharedFirmwareUpdater = [RUFirmwareUpdater sharedFirmwareUpdater];
     [sharedFirmwareUpdater removeObserver:self forKeyPath:@"availableFirmwareVersions"];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){ [[RURetrodeManager sharedManager] startRetrodeSupport]; });
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSError *error  = nil;
-        BOOL    success = [[RUFirmwareUpdater sharedFirmwareUpdater] updateAvailableFirmwareVersionsWithError:&error];
-        if(!success)
-            [NSApp presentError:error];
-    });
+    
+    [[RUFirmwareUpdater sharedFirmwareUpdater] performSelectorInBackground:@selector(updateAvailableFirmwareVersionsWithError:) withObject:nil];
+    
+    
+    NSViewController *viewController = [[NSViewController alloc] initWithNibName:@"fileSelectionViewController" bundle:[NSBundle mainBundle]];
+    [self setFileSelectionViewController:viewController];
+    [[self fileSelectionViewController] view];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification
@@ -202,6 +214,63 @@
         [[[self firmwareDrawerView] animator] replaceSubview:[[[self firmwareDrawerView] subviews] lastObject] with:view];
 }
 
+- (void)copyFile:(NSNotification*)notification
+{
+    NSError   *error   = nil;
+    NSURL     *fileURL = [notification object];
+    RURetrode *retrode = [self currentRetrode];
+    NSArray   *availableFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[retrode mountPath] error:&error];
+    if(availableFiles == nil)
+    {
+        [NSApp presentError:error];
+        return;
+    }
+    
+    NSString *extension = [fileURL pathExtension];
+    NSArray  *filesOfSameType = [availableFiles filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        return [[evaluatedObject pathExtension] isEqualToString:extension];
+    }]];
+        
+    NSString *fileToReplace = nil;
+    if([filesOfSameType count] == 0)
+    {
+        NSString *localizedDescription = [NSString stringWithFormat:@"There are not %@ files on the retrode that you could replace.", extension];
+        error = [NSError errorWithDomain:@"RUDomain" code:1000 userInfo:@{ NSLocalizedDescriptionKey : localizedDescription }];
+        [NSApp presentError:error];
+    }
+    else if([filesOfSameType count] == 1 || [filesOfSameType containsObject:[fileURL lastPathComponent]])
+    {
+        NSString *message = [NSString stringWithFormat:@"Are you sure you want to replace %@ with %@?", [filesOfSameType lastObject], [fileURL lastPathComponent]];
+        NSAlert *alert = [NSAlert alertWithMessageText:message defaultButton:@"No" alternateButton:@"Yes" otherButton:@"" informativeTextWithFormat:@"You should be absolutely sure that the file is compatible with the game"];
+        if([alert runModal] == NSAlertAlternateReturn)
+            fileToReplace = [filesOfSameType lastObject];
+    }
+    else
+    {
+        NSString *message = [NSString stringWithFormat:@"Please select the file you want to replace"];
+        NSAlert *alert = [NSAlert alertWithMessageText:message defaultButton:@"Cancel" alternateButton:@"Replace" otherButton:@"" informativeTextWithFormat:@"You should be absolutely sure that the file is compatible with the game"];
+        [[self fileSelectionViewController] setRepresentedObject:filesOfSameType];
+        [alert setAccessoryView:[[self fileSelectionViewController] view]];
+        if([alert runModal] == NSAlertAlternateReturn)
+        {
+            NSIndexSet* selection = (NSIndexSet*)[[self fileSelectionViewController] title];
+            fileToReplace = [filesOfSameType objectAtIndex:[selection firstIndex]];
+        }
+    }
+    
+    if(fileToReplace)
+    {
+        NSData *data = [NSData dataWithContentsOfURL:fileURL];
+        
+        NSString *fullPath = [[retrode mountPath] stringByAppendingPathExtension:fileToReplace];
+        [[NSFileManager defaultManager] setAttributes:@{ NSFileImmutable: @(FALSE) } ofItemAtPath:fullPath error:nil];
+        if(![data writeToFile:fullPath options:0 error:&error])
+        {
+            [NSApp presentError:error];
+        }
+        [[NSFileManager defaultManager] setAttributes:@{ NSFileImmutable: @(YES) } ofItemAtPath:fullPath error:nil];
+    }
+}
 #pragma mark - Notifications and Callbacks -
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -322,21 +391,39 @@
 
 - (void)drawerWillOpen:(NSNotification *)notification
 {
-    if([notification object] == [self configDrawer])
+    NSDrawer *drawer = [notification object];
+    if(drawer == [self configDrawer])
         [[self firmwareDrawer] close:self];
-    else if([notification object] == [self firmwareDrawer])
+    else if(drawer == [self firmwareDrawer])
     {
         [self showFirmwareDrawerSubview:[self firmwareReleaseNotesView]];
         [[self configDrawer] close:self];
+    }
+    
+    if([drawer edge] == NSMaxYEdge)
+    {
+        NSWindow *drawerWindow = [[drawer contentView] window];
+        NSRect  frame        = [drawerWindow frame];
+        frame.origin.y -= 53.0;
+        [drawerWindow setFrame:frame display:YES animate:YES];
     }
 }
 
 - (void)drawerDidOpen:(NSNotification *)notification
 {
-    if([notification object] == [self configDrawer])
+    NSDrawer *drawer = [notification object];
+    if(drawer == [self configDrawer])
         [[self configButton] setState:NSOnState];
-    else if([notification object] == [self firmwareDrawer])
+    else if(drawer == [self firmwareDrawer])
     {
+    }
+    
+    if([drawer edge] == NSMaxYEdge)
+    {
+        NSWindow *drawerWindow = [[drawer contentView] window];
+        NSRect  frame        = [drawerWindow frame];
+        frame.origin.y -= 53.0;
+        [drawerWindow setFrame:frame display:YES animate:NO];
     }
 }
 
@@ -380,5 +467,20 @@
     CGFloat height = [attributedString heightForWidth:[tableView frame].size.width];
     return fmax(height+19.0-((int)height%19),19.0);
 }
-@end
+#pragma mark - NSURLDownloadDelegate -
+- (void)downloadDidBegin:(NSURLDownload *)download
+{}
 
+- (void)download:(NSURLDownload *)download didReceiveDataOfLength:(NSUInteger)length
+{
+    
+}
+
+- (void)download:(NSURLDownload *)download didFailWithError:(NSError *)error
+{}
+
+- (void)downloadDidFinish:(NSURLDownload *)download
+{
+    
+}
+@end

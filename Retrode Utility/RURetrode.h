@@ -12,7 +12,8 @@ extern NSString * const kRUDiskNotMounted;  // Device is currently not mounted
 extern NSString * const kRUNoBSDDevice;     // Device is not known to DA, meaning it can't be mounted without hw reset
 
 extern const int64_t kRUDisconnectDelay;
-extern const int32_t kRUVendorIDVersion2;
+extern const int32_t kRUVendorID;
+extern const int32_t kRUProductIDVersion1;
 extern const int32_t kRUProductIDVersion2;
 extern const int32_t kRUVendorIDVersion2DFU;
 extern const int32_t kRUProductIDVersion2DFU;

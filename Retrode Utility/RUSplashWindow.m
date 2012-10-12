@@ -60,7 +60,7 @@
     return YES;
 }
 
-
+#pragma mark -
 - (void)expand:(id)sender
 {
     DLog();
@@ -104,14 +104,11 @@
     NSRectFillUsingOperation([self bounds], NSCompositeClear);
     NSRect    backgroundRect = NSMakeRect(0, 0, 400, [self bounds].size.height-53);
     NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:backgroundRect xRadius:10.0 yRadius:10.0];
-    NSColor      *startColor = [NSColor colorWithDeviceWhite:0.95 alpha:1.0];
-    NSColor      *endColor   = [NSColor colorWithDeviceWhite:0.62 alpha:1.0];
+    
+    NSColor      *startColor = [NSColor colorWithDeviceWhite:0.90 alpha:1.0];
+    NSColor      *endColor   = [NSColor colorWithDeviceWhite:0.60 alpha:1.0];
     NSGradient   *gradient   = [[NSGradient alloc] initWithColors:@[startColor, endColor]];
     [gradient drawInBezierPath:bezierPath angle:270.0];
-    
-    NSImage *retrodeImage = [NSImage imageNamed:@"Retrode 2"];
-    NSRect imageRect = (NSRect){{228, -26}, {241, 204}};
-    [retrodeImage drawInRect:imageRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 }
 
 @end
