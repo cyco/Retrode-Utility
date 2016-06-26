@@ -44,7 +44,5 @@
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
 	<string>https://github.com/cyco/Retrode-Utility/raw/master/Website%20Resources/Appcast.xml</string>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_pub.pem</string>
 </dict>
 </plist>

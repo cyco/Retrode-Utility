@@ -29,7 +29,6 @@
 		837B69E4161EEE4F003B93D9 /* Retrode 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 837B69E3161EEE4F003B93D9 /* Retrode 2.png */; };
 		8396086B162235E700FE6EDE /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8396086A162235E700FE6EDE /* Sparkle.framework */; };
 		8396086D162235EF00FE6EDE /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8396086A162235E700FE6EDE /* Sparkle.framework */; };
-		8396086F1622371000FE6EDE /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 8396086E1622371000FE6EDE /* dsa_pub.pem */; };
 		839F22EF1625803400C06D56 /* fileSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 839F22EE1625803400C06D56 /* fileSelectionViewController.xib */; };
 		83B47A1B16230839001C7D13 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 83B47A1A16230839001C7D13 /* Credits.rtf */; };
 		83C888891620C919006FF1E0 /* NS(Attributed)String+Geometrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C888881620C919006FF1E0 /* NS(Attributed)String+Geometrics.m */; };
@@ -88,7 +87,6 @@
 		837B69DF161EE649003B93D9 /* RUSplashWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUSplashWindow.m; sourceTree = "<group>"; };
 		837B69E3161EEE4F003B93D9 /* Retrode 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Retrode 2.png"; sourceTree = "<group>"; };
 		8396086A162235E700FE6EDE /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
-		8396086E1622371000FE6EDE /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		839F22EE1625803400C06D56 /* fileSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = fileSelectionViewController.xib; sourceTree = "<group>"; };
 		83B47A1A16230839001C7D13 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		83C888871620C919006FF1E0 /* NS(Attributed)String+Geometrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NS(Attributed)String+Geometrics.h"; sourceTree = "<group>"; };
@@ -199,7 +197,6 @@
 				8371684A16234EB4004D3B10 /* Retrode 2@2x.png */,
 				8371684716234E66004D3B10 /* icon.iconset */,
 				83B47A1A16230839001C7D13 /* Credits.rtf */,
-				8396086E1622371000FE6EDE /* dsa_pub.pem */,
 				837B69E3161EEE4F003B93D9 /* Retrode 2.png */,
 				83515AA3161E4301009ADF10 /* dfu-programmer */,
 				8375A2141615DB4A004FA5AE /* RetrodeUtility-Info.plist */,
@@ -286,7 +283,6 @@
 				8375A2231615DB4A004FA5AE /* MainMenu.xib in Resources */,
 				83515AA4161E4301009ADF10 /* dfu-programmer in Resources */,
 				837B69E4161EEE4F003B93D9 /* Retrode 2.png in Resources */,
-				8396086F1622371000FE6EDE /* dsa_pub.pem in Resources */,
 				83B47A1B16230839001C7D13 /* Credits.rtf in Resources */,
 				8371684816234E66004D3B10 /* icon.iconset in Resources */,
 				8371684B16234EB4004D3B10 /* Retrode 2@2x.png in Resources */,
