@@ -33,6 +33,7 @@
 		839F22EF1625803400C06D56 /* fileSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 839F22EE1625803400C06D56 /* fileSelectionViewController.xib */; };
 		83B47A1B16230839001C7D13 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 83B47A1A16230839001C7D13 /* Credits.rtf */; };
 		83C888891620C919006FF1E0 /* NS(Attributed)String+Geometrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C888881620C919006FF1E0 /* NS(Attributed)String+Geometrics.m */; };
+		83DD9DB01D1FD12300EA5C35 /* libusb-0.1.4.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 83DD9DAE1D1FD12000EA5C35 /* libusb-0.1.4.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -92,6 +93,7 @@
 		83B47A1A16230839001C7D13 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		83C888871620C919006FF1E0 /* NS(Attributed)String+Geometrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NS(Attributed)String+Geometrics.h"; sourceTree = "<group>"; };
 		83C888881620C919006FF1E0 /* NS(Attributed)String+Geometrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NS(Attributed)String+Geometrics.m"; sourceTree = "<group>"; };
+		83DD9DAE1D1FD12000EA5C35 /* libusb-0.1.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libusb-0.1.4.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 		8375A2131615DB4A004FA5AE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				83DD9DAE1D1FD12000EA5C35 /* libusb-0.1.4.dylib */,
 				839F22EE1625803400C06D56 /* fileSelectionViewController.xib */,
 				8371684C162351FB004D3B10 /* libusb-1.0.0.dylib */,
 				8371684A16234EB4004D3B10 /* Retrode 2@2x.png */,
@@ -278,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8371684E16235224004D3B10 /* libusb-1.0.0.dylib in Resources */,
+				83DD9DB01D1FD12300EA5C35 /* libusb-0.1.4.dylib in Resources */,
 				8375A2171615DB4A004FA5AE /* InfoPlist.strings in Resources */,
 				8375A2231615DB4A004FA5AE /* MainMenu.xib in Resources */,
 				83515AA4161E4301009ADF10 /* dfu-programmer in Resources */,
@@ -420,6 +424,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Retrode Utility\"",
+					"$(PROJECT_DIR)/Retrode",
+					Utility,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPARKLE_PRIVATE_KEY_PATH = "$PROJECT_DIR/../Signing Tools/dsa_priv.pem";
@@ -442,6 +448,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Retrode Utility\"",
+					"$(PROJECT_DIR)/Retrode",
+					Utility,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPARKLE_PRIVATE_KEY_PATH = "$PROJECT_DIR/../Signing Tools/dsa_priv.pem";
