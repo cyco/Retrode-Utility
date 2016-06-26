@@ -75,7 +75,7 @@ const NSInteger kRUFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     
     // Parse firmware release notes
     NSString *releaseNotes    = [[releaseNodes lastObject] objectValue];
-    NSString *versionPattern  = @"(?<=v)\\d+\\.\\d+\\w*(\\s\\w+)?";
+    NSString *versionPattern  = @"(?<=v)\\d+\\.\\d+\\w*(\\sbeta(\\s\\d+)?)?";
     NSString *datePattern     = @"(?<=\\()(\\d{4}(-\\d{2}){0,2})(?=\\)\\n)";
     NSString *notesPattern    = @"(?<=-\\s)(.*)(?=\\n)((\\n\\s\\s.*)(?=\\n))*";
     NSString *firmwarePattern = [NSString stringWithFormat:@"%@.*$\\n(^.+$\\n)*", versionPattern];
@@ -87,10 +87,9 @@ const NSInteger kRUFirmwareUpdateErrorDFUProgrammerFail       = 1009;
     [regularExpression enumerateMatchesInString:releaseNotes options:0 range:[releaseNotes fullRange] usingBlock:
      ^ (NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
      {
-         NSString *version = [[self RU_resultOfPatternMatching:versionPattern inRange:[result range] ofString:releaseNotes] lastObject];
-         NSString *date    = [[self RU_resultOfPatternMatching:datePattern inRange:[result range] ofString:releaseNotes] lastObject];
+         NSString *version = [[self RU_resultOfPatternMatching:versionPattern inRange:[result range] ofString:releaseNotes] objectAtIndex:0];
+         NSString *date    = [[self RU_resultOfPatternMatching:datePattern inRange:[result range] ofString:releaseNotes] objectAtIndex:0];
          NSArray  *notes   = [self RU_resultOfPatternMatching:notesPattern inRange:[result range] ofString:releaseNotes];
-         
          [versionsDict setValue:@{ @"date" : date, @"notes" : notes} forKey:version];
      }];
     
@@ -124,7 +123,7 @@ const NSInteger kRUFirmwareUpdateErrorDFUProgrammerFail       = 1009;
         NSString *retrodeVersion  = [[self RU_resultOfPatternMatching:retrodeVersionPattern inRange:fullRange ofString:link] lastObject];
         NSString *firmwareVersion = [[self RU_resultOfPatternMatching:firmwareVersionPattern inRange:fullRange ofString:link] lastObject];
         firmwareVersion = [firmwareVersion stringByReplacingOccurrencesOfString:@"-" withString:@" "];
-        
+
         if(retrodeVersion != nil && firmwareVersion != nil)
         {
             NSDictionary *releaseInfo = [versionsDict valueForKey:firmwareVersion];
@@ -142,7 +141,7 @@ const NSInteger kRUFirmwareUpdateErrorDFUProgrammerFail       = 1009;
                 [firmware setReleaseDate:date];
                 
                 [availableFirmwareVersions addObject:firmware];
-            }
+            } else DLog(@"No version info for %@", firmwareVersion);
         }
     };
     
