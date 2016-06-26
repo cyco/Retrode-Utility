@@ -90,8 +90,7 @@ NSString * const kRUNoBSDDevice    = @"No BSD device";
     NSError   *error                 = nil;
     NSString  *configurationFilePath = [self configurationFilePath];
     NSData    *configFileData        = [NSData dataWithContentsOfFile:configurationFilePath options:NSDataReadingUncached error:&error];
-    if(configFileData == nil)
-    {
+    if(configFileData == nil) {
         DLog(@"%@", error);
         return;
     }

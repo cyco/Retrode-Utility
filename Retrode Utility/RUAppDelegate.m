@@ -79,12 +79,32 @@ NSString * const kRUCopyFileToRetrodeNotificationName = @"kRUCopyFileToRetrodeNo
     
     [[self releaseNotesTableView] reloadData];
 }
+
 - (IBAction)installFirmware:(id)sender
 {
     if([[self currentRetrode] DFUMode])
         [self showFirmwareDrawerSubview:[self firmwareProgressView]];
     else
         [self showFirmwareDrawerSubview:[self firmwareDFUInstructionsView]];
+}
+
+- (IBAction)installCustomFirmware:(id)sender {
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    [panel setAllowsMultipleSelection:NO];
+    [panel setAllowedFileTypes:@[@"hex"]];
+    if([panel runModal] != NSFileHandlingPanelOKButton) {
+        [[self firmwareButton] selectItemAtIndex:0];
+        [sender setRepresentedObject:nil];
+        return;
+    }
+
+    NSLog(@"install custom firmware: %@", [panel URL]);
+    RUFirmware *firmware = [[RUFirmwareUpdater sharedFirmwareUpdater] makeCustomFirmwareWithURL:panel.URL forRetrode:self.currentRetrode];
+    [sender setRepresentedObject:firmware];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[self firmwareDrawer] open:self];
+        [self installFirmware:sender];
+    });
 }
 
 - (IBAction)discardConfig:(id)sender
@@ -136,7 +156,11 @@ NSString * const kRUCopyFileToRetrodeNotificationName = @"kRUCopyFileToRetrodeNo
         
         [itemMenu addItem:item];
     }];
-    
+
+    [itemMenu addItem:[NSMenuItem separatorItem]];
+    NSMenuItem *customFirmwareItem = [[NSMenuItem alloc] initWithTitle:@"Custom firmware…" action:@selector(installCustomFirmware:) keyEquivalent:@""];
+    [itemMenu addItem:customFirmwareItem];
+
     [[self firmwareButton] selectItemWithTitle:selectedTitle];
     if([[self firmwareButton] selectedItem] == nil)
     {
@@ -364,7 +388,9 @@ NSString * const kRUCopyFileToRetrodeNotificationName = @"kRUCopyFileToRetrodeNo
 - (void)retrodeDidMount:(RURetrode *)retrode
 {
     DLog();
-    [retrode readConfiguration];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [retrode readConfiguration];
+    });
 }
 
 - (void)retrodeDidUnmount:(RURetrode *)retrode

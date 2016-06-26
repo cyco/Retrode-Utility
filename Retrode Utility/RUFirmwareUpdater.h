@@ -21,6 +21,7 @@ extern const NSInteger kRUFirmwareUpdateErrorRetrodeNotInDFU;
 + (RUFirmwareUpdater*)sharedFirmwareUpdater;
 - (BOOL)updateAvailableFirmwareVersionsWithError:(NSError**)outError;
 - (void)installFirmware:(RUFirmware*)firmware toRetrode:(RURetrode*)retrode withCallback:(void (^)(double, id))callback;
+- (RUFirmware*)makeCustomFirmwareWithURL:(NSURL*)file forRetrode:(RURetrode*)retrode;
 
 @property (strong, readonly) NSArray *availableFirmwareVersions;
 @end
