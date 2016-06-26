@@ -1,0 +1,144 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+ <title>Retrode Utility 0.2 Changes</title><style type="text/css">
+/* Override links*/
+a:link, a:visited {
+		color: #00008b;
+}
+a:link:hover, a:visited:hover {
+		color: red;
+        text-decoration: underline;
+        border-bottom: none;
+}
+
+/* Remove margins and fix the navigation bar */
+body {
+/*        margin: 0px; */
+        font: inherit;
+}
+#content {
+        margin: 0px 10px 0px 10px;
+}
+#mainnav {
+        background: rgb(233,238,249);
+        border: none;
+        border-bottom: 1px solid #d7d7d7;
+        margin-top: 0px;
+}
+#mainnav :link, #mainnav :visited {
+         background: none;
+        border: none;
+        padding: .2em 20px;
+}
+#mainnav :link:hover, #mainnav :visited:hover {
+         background-color: inherit;
+         border: none;
+         text-decoration: underline;
+        color: black;
+}
+#mainnav .active:link, #mainnav .active:visited {
+        background: none;
+         border: none;
+         color: black;
+        font-weight: bold;
+         text-decoration: none;
+}
+#mainnav .active:link:hover, #mainnav .active:visited:hover {
+         border: none;
+}
+
+
+/* Hide the top banner, login info, search field */
+#banner {
+        display: none;
+}
+
+/* Accommodate our login info at the bottom of the page */
+#footer {
+        border-bottom: 1px solid;
+        padding-left: 10px;
+        padding-right: 10px;
+}
+#bottomnav {
+        margin: 10px 0px 10px 0px;
+}
+.centernav h2, .centernav hr { display: none }
+.centernav ul { font-size: 10px; list-style: none; margin: 0; text-align: center }
+.centernav li {
+        border-right: 1px solid #d7d7d7;
+        display: inline;
+        padding: 0 .75em;
+        white-space: nowrap;
+}
+.centernav li.last { border-right: none }
+
+/* CSS for Adium header */
+#titlecontainer {
+        background: #336699;
+        color: #FFFFFF;
+        font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+        font-size: 44px;
+        text-shadow: 2px 2px 3px gray;
+        height: 24px;
+        padding: 1px 16px 0px 16px;
+}
+#titlecontainer a:link, #titlecontainer a:visited { color: white; background: none; border: none;}
+
+/* Tabs */
+#navcontainer {
+        background: #336699;
+        text-align: right;
+        padding: 4px 16px 5px 0px;
+
+        font-family: "Lucida Grande", "Lucida Sans Unicode", verdana, lucida, sans-serif;
+}
+
+/* Custom font for Trac */
+#traccontent {
+ font: normal 13px verdana,arial,'Bitstream Vera Sans',helvetica,sans-serif;
+}
+
+/* Styles for TracNav */
+.wiki-toc.trac-nav h4 { margin: 0; padding: 0; }
+/*.wiki-toc.trac-nav ul > li:first-child { margin-right: 4ex; }*/
+.wiki-toc.trac-nav .edit {
+ position: absolute;
+ top: 2px;
+ right: 3px;
+ margin-left: 3px;
+ border: 0;
+}
+.wiki-toc.trac-nav .edit a { color:blue; border-color:blue; }
+
+.wiki-toc { background: rgb(233,238,249); }
+.wiki-toc .active { background: white;}
+
+/* Styles for TracSearchBox */
+.wiki-searchbox {
+ margin-left: 24px;
+}
+
+/* */
+#ticket { 
+ background: rgb(233,238,249);
+}
+
+/* For LastModified */
+span.last-modified { border-bottom: 1px dotted gray; cursor: help; }
+</style>
+</head>
+<body>
+
+<h1>Changes in Retrode Utility 0.3</h1>
+
+<strong>Version 0.3 (10/12/2012)</strong>
+</p>
+<ul>
+	<li>Support for original Retrode</li>
+	<li>Pre 0.17c config files can be edited</li>
+	<li>SRM files dropped on main window are copied to the retrode</li>
+	<li>Main window restores last position</li>
+</ul>
