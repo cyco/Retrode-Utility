@@ -7,7 +7,7 @@
 		<language>en</language>
 		<item>
 			<title>Version 0.5</title>
-			<sparkle:releaseNotesLink>https://github.com/cyco/Retrode-Utility/releases/download/0.5/Release.Notes.0.5.html</sparkle:releaseNotesLink>
+			<sparkle:releaseNotesLink>http://cyco.github.io/Retrode-Utility/release-notes/Release.Notes.0.5.html</sparkle:releaseNotesLink>
 			<pubDate>Su, 26 Jun 2016 11:04:03 +0100</pubDate>
 			<enclosure url="https://github.com/cyco/Retrode-Utility/releases/download/0.5/Retrode.Utility.0.5.zip" sparkle:version="0.5" type="application/octet-stream" length="3067095"/>
 		</item>
