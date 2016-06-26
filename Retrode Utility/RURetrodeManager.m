@@ -274,10 +274,11 @@ BOOL addDevice(void *refCon, io_service_t usbDevice)
 }
 - (NSDictionary*)RU_retrode2MatchingCriteriaWithLocationID:(UInt32)locationID
 {
+
     if(locationID == 0)
-        return @{ @kIOProviderClassKey : @kIOUSBDeviceClassName, @kUSBVendorID : @(kRUVendorID), @kUSBProductID : @(kRUProductIDVersion2) };
+        return @{ @kIOProviderClassKey : [self usbDeviceClassName], @kUSBVendorID : @(kRUVendorID), @kUSBProductID : @(kRUProductIDVersion2) };
     else
-        return @{ @kIOProviderClassKey : @kIOUSBDeviceClassName, @kUSBVendorID : @(kRUVendorID), @kUSBProductID : @(kRUProductIDVersion2), @kIOLocationMatchKey : @(locationID) };
+        return @{ @kIOProviderClassKey : [self usbDeviceClassName], @kUSBVendorID : @(kRUVendorID), @kUSBProductID : @(kRUProductIDVersion2), @kIOLocationMatchKey : @(locationID) };
     
 }
 
@@ -288,9 +289,9 @@ BOOL addDevice(void *refCon, io_service_t usbDevice)
 - (NSDictionary*)RU_retrode1MatchingCriteriaWithLocationID:(UInt32)locationID
 {
     if(locationID == 0)
-        return @{ @kIOProviderClassKey : @kIOUSBDeviceClassName, @kUSBVendorID : @(kRUVendorID), @kUSBProductID : @(kRUProductIDVersion1) };
+        return @{ @kIOProviderClassKey : [self usbDeviceClassName], @kUSBVendorID : @(kRUVendorID), @kUSBProductID : @(kRUProductIDVersion1) };
     else
-        return @{ @kIOProviderClassKey : @kIOUSBDeviceClassName, @kUSBVendorID : @(kRUVendorID), @kUSBProductID : @(kRUProductIDVersion1), @kIOLocationMatchKey : @(locationID) };
+        return @{ @kIOProviderClassKey : [self usbDeviceClassName], @kUSBVendorID : @(kRUVendorID), @kUSBProductID : @(kRUProductIDVersion1), @kIOLocationMatchKey : @(locationID) };
     
 }
 
@@ -302,8 +303,16 @@ BOOL addDevice(void *refCon, io_service_t usbDevice)
 - (NSDictionary*)RU_dfuMatchingCriteriaWithLocationID:(UInt32)locationID
 {
     if(locationID == 0)
-        return @{ @kIOProviderClassKey : @kIOUSBDeviceClassName, @kUSBVendorID : @(kRUVendorIDVersion2DFU), @kUSBProductID : @(kRUProductIDVersion2DFU) };
+        return @{ @kIOProviderClassKey : [self usbDeviceClassName], @kUSBVendorID : @(kRUVendorIDVersion2DFU), @kUSBProductID : @(kRUProductIDVersion2DFU) };
     else
-        return @{ @kIOProviderClassKey : @kIOUSBDeviceClassName, @kUSBVendorID : @(kRUVendorIDVersion2DFU), @kUSBProductID : @(kRUProductIDVersion2DFU), @kIOLocationMatchKey : @(locationID) };
+        return @{ @kIOProviderClassKey : [self usbDeviceClassName], @kUSBVendorID : @(kRUVendorIDVersion2DFU), @kUSBProductID : @(kRUProductIDVersion2DFU), @kIOLocationMatchKey : @(locationID) };
+}
+
+- (NSString*)usbDeviceClassName {
+    NSOperatingSystemVersion needHostDeviceVersion = {10,11,0};
+    if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:needHostDeviceVersion])
+        return @"IOUSBHostDevice";
+    else
+        return @kIOUSBDeviceClassName;
 }
 @end

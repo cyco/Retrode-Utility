@@ -215,16 +215,17 @@ NSString * const kRUNoBSDDevice    = @"No BSD device";
     {
         [self setLocationID:(deviceData->locationID)];
         [self setIdentifier:[[self class] generateIdentifierFromDeviceData:deviceData]];
-        
+
         io_string_t path;
         IORegistryEntryGetPath(deviceData->ioService, kIOServicePlane, path);
-        NSString *devicePath = [@(path) stringByAppendingString:@"/IOUSBInterface@0/IOUSBMassStorageClass/IOSCSIPeripheralDeviceNub/IOSCSIPeripheralDeviceType00/IOBlockStorageServices"];
+        NSString *devicePath = [@(path) stringByAppendingString:@"/IOUSBHostInterface@0/IOUSBMassStorageInterfaceNub/IOUSBMassStorageDriverNub/IOUSBMassStorageDriver/IOSCSILogicalUnitNub@0/IOSCSIPeripheralDeviceType00/IOBlockStorageServices"];
         NSDictionary *dictionary = @{ @"DADevicePath" : devicePath };
+
         DARegisterDiskEjectApprovalCallback(apSession, (__bridge CFDictionaryRef)(dictionary), RUDADiskEjectApprovalCallback, (__bridge void *)(self));
         DARegisterDiskAppearedCallback(apSession, (__bridge CFDictionaryRef)(dictionary), RUDADiskAppearedCallback, (__bridge void *)(self));
         DARegisterDiskDisappearedCallback(apSession, (__bridge CFDictionaryRef)(dictionary), RUDADiskDisappearedCallback, (__bridge void *)(self));
     }
-    
+
     if(deviceData != NULL)
         [self RU_callDelegateMethod:@selector(retrodeHardwareDidBecomeAvailable:)];
     else
