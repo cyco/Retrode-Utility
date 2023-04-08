@@ -6,6 +6,21 @@
 	objectVersion = 56;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		8333400429E1639900DABA64 /* Copy libUSB Artifacts */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 8333400529E1639900DABA64 /* Build configuration list for PBXAggregateTarget "Copy libUSB Artifacts" */;
+			buildPhases = (
+				8333400A29E163A600DABA64 /* ShellScript */,
+			);
+			dependencies = (
+				8333400929E1639F00DABA64 /* PBXTargetDependency */,
+			);
+			name = "Copy libUSB Artifacts";
+			productName = "Copy libUSB Artifacts";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		07B512BF29E1414B00FD306F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8375A2111615DB4A004FA5AE /* Foundation.framework */; };
 		07B512C029E1419200FD306F /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8375A20F1615DB4A004FA5AE /* AppKit.framework */; };
@@ -14,13 +29,14 @@
 		830C011A16173C57007BEF28 /* RUFirmwareUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 830C011916173C57007BEF28 /* RUFirmwareUpdater.m */; };
 		8317DD621621990E00EDEFF3 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317DD611621990E00EDEFF3 /* Quartz.framework */; };
 		83333FCD29E15C4500DABA64 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 83333FCC29E15C4500DABA64 /* Sparkle */; };
+		83333FFD29E162E400DABA64 /* libusb-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 83333FDD29E161AD00DABA64 /* libusb-1.0.0.dylib */; };
+		8333400E29E168B300DABA64 /* libusb-1.0.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 8333400D29E168B300DABA64 /* libusb-1.0.0.dylib */; };
 		83515AA4161E4301009ADF10 /* dfu-programmer in Resources */ = {isa = PBXBuildFile; fileRef = 83515AA3161E4301009ADF10 /* dfu-programmer */; };
 		8356A2C41616603900377E4B /* DiskArbitration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8356A2C31616603900377E4B /* DiskArbitration.framework */; };
 		836D5A641624BA0900D40CEA /* RUDeviceInfoContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D5A631624BA0900D40CEA /* RUDeviceInfoContainer.m */; };
 		836D5A721624D60300D40CEA /* RUImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D5A711624D60300D40CEA /* RUImageView.m */; };
 		8371684816234E66004D3B10 /* icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 8371684716234E66004D3B10 /* icon.iconset */; };
 		8371684B16234EB4004D3B10 /* Retrode 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8371684A16234EB4004D3B10 /* Retrode 2@2x.png */; };
-		8371684E16235224004D3B10 /* libusb-1.0.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 8371684C162351FB004D3B10 /* libusb-1.0.0.dylib */; };
 		8375A20D1615DB4A004FA5AE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8375A20C1615DB4A004FA5AE /* Cocoa.framework */; };
 		8375A2171615DB4A004FA5AE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8375A2151615DB4A004FA5AE /* InfoPlist.strings */; };
 		8375A2191615DB4A004FA5AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375A2181615DB4A004FA5AE /* main.m */; };
@@ -35,6 +51,100 @@
 		83B47A1B16230839001C7D13 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 83B47A1A16230839001C7D13 /* Credits.rtf */; };
 		83C888891620C919006FF1E0 /* NS(Attributed)String+Geometrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C888881620C919006FF1E0 /* NS(Attributed)String+Geometrics.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		83333FDC29E161AD00DABA64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83333FCE29E161AD00DABA64 /* libusb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 008FBF311628B79300BC5BE2;
+			remoteInfo = libusb;
+		};
+		83333FDE29E161AD00DABA64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83333FCE29E161AD00DABA64 /* libusb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 008FBFF51628BB8B00BC5BE2;
+			remoteInfo = dpfp;
+		};
+		83333FE029E161AD00DABA64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83333FCE29E161AD00DABA64 /* libusb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 008FC0051628BBDB00BC5BE2;
+			remoteInfo = dpfp_threaded;
+		};
+		83333FE229E161AD00DABA64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83333FCE29E161AD00DABA64 /* libusb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 008FC0151628BC0300BC5BE2;
+			remoteInfo = fxload;
+		};
+		83333FE429E161AD00DABA64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83333FCE29E161AD00DABA64 /* libusb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 006AD41C1C8C5A90007F8C6A;
+			remoteInfo = hotplugtest;
+		};
+		83333FE629E161AD00DABA64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83333FCE29E161AD00DABA64 /* libusb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 008FC0261628BC6B00BC5BE2;
+			remoteInfo = listdevs;
+		};
+		83333FE829E161AD00DABA64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83333FCE29E161AD00DABA64 /* libusb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 20468D67243298AE00650534;
+			remoteInfo = sam3u_benchmark;
+		};
+		83333FEA29E161AD00DABA64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83333FCE29E161AD00DABA64 /* libusb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 008A23D3236C8594004854AA;
+			remoteInfo = stress;
+		};
+		83333FEC29E161AD00DABA64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83333FCE29E161AD00DABA64 /* libusb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 20468D75243298D300650534;
+			remoteInfo = testlibusb;
+		};
+		83333FEE29E161AD00DABA64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83333FCE29E161AD00DABA64 /* libusb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 008FBFBD1628B9FE00BC5BE2;
+			remoteInfo = xusb;
+		};
+		83333FF029E161C000DABA64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83333FCE29E161AD00DABA64 /* libusb.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 008FBF301628B79300BC5BE2;
+			remoteInfo = libusb;
+		};
+		8333400829E1639F00DABA64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83333FCE29E161AD00DABA64 /* libusb.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 008FBF301628B79300BC5BE2;
+			remoteInfo = libusb;
+		};
+		8333400B29E1688900DABA64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8375A1FF1615DB4A004FA5AE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8333400429E1639900DABA64;
+			remoteInfo = "Copy libUSB Artifacts";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		83515AB0161E5596009ADF10 /* CopyFiles */ = {
@@ -58,6 +168,8 @@
 		830C011916173C57007BEF28 /* RUFirmwareUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUFirmwareUpdater.m; sourceTree = "<group>"; };
 		8317DD611621990E00EDEFF3 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		8331819B161FA6C400C16558 /* RURetrode_ManagerPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RURetrode_ManagerPrivate.h; sourceTree = "<group>"; };
+		83333FCE29E161AD00DABA64 /* libusb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libusb.xcodeproj; path = libusb/Xcode/libusb.xcodeproj; sourceTree = "<group>"; };
+		8333400D29E168B300DABA64 /* libusb-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libusb-1.0.0.dylib"; sourceTree = "<group>"; };
 		83515AA3161E4301009ADF10 /* dfu-programmer */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "dfu-programmer"; sourceTree = "<group>"; };
 		8356A2C116164B9000377E4B /* RURetrode_IOLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RURetrode_IOLevel.h; sourceTree = "<group>"; };
 		8356A2C31616603900377E4B /* DiskArbitration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiskArbitration.framework; path = System/Library/Frameworks/DiskArbitration.framework; sourceTree = SDKROOT; };
@@ -67,7 +179,6 @@
 		836D5A711624D60300D40CEA /* RUImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUImageView.m; sourceTree = "<group>"; };
 		8371684716234E66004D3B10 /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = icon.iconset; sourceTree = "<group>"; };
 		8371684A16234EB4004D3B10 /* Retrode 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Retrode 2@2x.png"; sourceTree = "<group>"; };
-		8371684C162351FB004D3B10 /* libusb-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libusb-1.0.0.dylib"; sourceTree = "<group>"; };
 		8375A2081615DB4A004FA5AE /* Retrode Utility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Retrode Utility.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8375A20C1615DB4A004FA5AE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8375A20F1615DB4A004FA5AE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -98,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83333FFD29E162E400DABA64 /* libusb-1.0.0.dylib in Frameworks */,
 				83333FCD29E15C4500DABA64 /* Sparkle in Frameworks */,
 				07B512C229E141C400FD306F /* UniformTypeIdentifiers.framework in Frameworks */,
 				07B512C029E1419200FD306F /* AppKit.framework in Frameworks */,
@@ -123,6 +235,23 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
+		83333FCF29E161AD00DABA64 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83333FDD29E161AD00DABA64 /* libusb-1.0.0.dylib */,
+				83333FDF29E161AD00DABA64 /* dpfp */,
+				83333FE129E161AD00DABA64 /* dpfp_threaded */,
+				83333FE329E161AD00DABA64 /* fxload */,
+				83333FE529E161AD00DABA64 /* hotplugtest */,
+				83333FE729E161AD00DABA64 /* listdevs */,
+				83333FE929E161AD00DABA64 /* sam3u_benchmark */,
+				83333FEB29E161AD00DABA64 /* stress */,
+				83333FED29E161AD00DABA64 /* testlibusb */,
+				83333FEF29E161AD00DABA64 /* xusb */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		836D5A731624D74700D40CEA /* Custom Controls */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,11 +266,13 @@
 		8375A1FD1615DB4A004FA5AE = {
 			isa = PBXGroup;
 			children = (
+				83333FCE29E161AD00DABA64 /* libusb.xcodeproj */,
 				8375A2121615DB4A004FA5AE /* Retrode Utility */,
 				8375A20B1615DB4A004FA5AE /* Frameworks */,
 				8375A2091615DB4A004FA5AE /* Products */,
 			);
 			sourceTree = "<group>";
+			wrapsLines = 0;
 		};
 		8375A2091615DB4A004FA5AE /* Products */ = {
 			isa = PBXGroup;
@@ -193,8 +324,8 @@
 		8375A2131615DB4A004FA5AE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8333400D29E168B300DABA64 /* libusb-1.0.0.dylib */,
 				839F22EE1625803400C06D56 /* fileSelectionViewController.xib */,
-				8371684C162351FB004D3B10 /* libusb-1.0.0.dylib */,
 				8371684A16234EB4004D3B10 /* Retrode 2@2x.png */,
 				8371684716234E66004D3B10 /* icon.iconset */,
 				83B47A1A16230839001C7D13 /* Credits.rtf */,
@@ -240,6 +371,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				83333FF129E161C000DABA64 /* PBXTargetDependency */,
+				8333400C29E1688900DABA64 /* PBXTargetDependency */,
 			);
 			name = "Retrode Utility";
 			packageProductDependencies = (
@@ -259,6 +392,11 @@
 				CLASSPREFIX = RU;
 				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "Christoph Leimbrock";
+				TargetAttributes = {
+					8333400429E1639900DABA64 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+				};
 			};
 			buildConfigurationList = 8375A2021615DB4A004FA5AE /* Build configuration list for PBXProject "Retrode Utility" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -274,19 +412,99 @@
 			);
 			productRefGroup = 8375A2091615DB4A004FA5AE /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 83333FCF29E161AD00DABA64 /* Products */;
+					ProjectRef = 83333FCE29E161AD00DABA64 /* libusb.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8375A2071615DB4A004FA5AE /* Retrode Utility */,
+				8333400429E1639900DABA64 /* Copy libUSB Artifacts */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		83333FDD29E161AD00DABA64 /* libusb-1.0.0.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = "libusb-1.0.0.dylib";
+			remoteRef = 83333FDC29E161AD00DABA64 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83333FDF29E161AD00DABA64 /* dpfp */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = dpfp;
+			remoteRef = 83333FDE29E161AD00DABA64 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83333FE129E161AD00DABA64 /* dpfp_threaded */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = dpfp_threaded;
+			remoteRef = 83333FE029E161AD00DABA64 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83333FE329E161AD00DABA64 /* fxload */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = fxload;
+			remoteRef = 83333FE229E161AD00DABA64 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83333FE529E161AD00DABA64 /* hotplugtest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = hotplugtest;
+			remoteRef = 83333FE429E161AD00DABA64 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83333FE729E161AD00DABA64 /* listdevs */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = listdevs;
+			remoteRef = 83333FE629E161AD00DABA64 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83333FE929E161AD00DABA64 /* sam3u_benchmark */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = sam3u_benchmark;
+			remoteRef = 83333FE829E161AD00DABA64 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83333FEB29E161AD00DABA64 /* stress */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = stress;
+			remoteRef = 83333FEA29E161AD00DABA64 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83333FED29E161AD00DABA64 /* testlibusb */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = testlibusb;
+			remoteRef = 83333FEC29E161AD00DABA64 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83333FEF29E161AD00DABA64 /* xusb */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = xusb;
+			remoteRef = 83333FEE29E161AD00DABA64 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8375A2061615DB4A004FA5AE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8371684E16235224004D3B10 /* libusb-1.0.0.dylib in Resources */,
+				8333400E29E168B300DABA64 /* libusb-1.0.0.dylib in Resources */,
 				8375A2171615DB4A004FA5AE /* InfoPlist.strings in Resources */,
 				8375A2231615DB4A004FA5AE /* MainMenu.xib in Resources */,
 				83515AA4161E4301009ADF10 /* dfu-programmer in Resources */,
@@ -301,6 +519,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8333400A29E163A600DABA64 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\nlibusb_path=\"$(find \"${SDK_STAT_CACHE_DIR}/libusb\"* -name 'libusb-1.0.0.dylib' -type f -print0 | xargs -0 ls -tl|head -n 1|awk '{print $NF}')\"\n\n\ncp \"${libusb_path}\" \"${PROJECT_DIR}/Retrode Utility/libusb-1.0.0.dylib\"\n\n";
+		};
 		8371684F1623522C004D3B10 /* Relink DFU-Programmer */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -338,6 +573,24 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		83333FF129E161C000DABA64 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libusb;
+			targetProxy = 83333FF029E161C000DABA64 /* PBXContainerItemProxy */;
+		};
+		8333400929E1639F00DABA64 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libusb;
+			targetProxy = 8333400829E1639F00DABA64 /* PBXContainerItemProxy */;
+		};
+		8333400C29E1688900DABA64 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8333400429E1639900DABA64 /* Copy libUSB Artifacts */;
+			targetProxy = 8333400B29E1688900DABA64 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		8375A2151615DB4A004FA5AE /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -358,6 +611,24 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8333400629E1639900DABA64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KJC93QR5MR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8333400729E1639900DABA64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KJC93QR5MR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		8375A2241615DB4A004FA5AE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -519,6 +790,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8333400529E1639900DABA64 /* Build configuration list for PBXAggregateTarget "Copy libUSB Artifacts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8333400629E1639900DABA64 /* Debug */,
+				8333400729E1639900DABA64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8375A2021615DB4A004FA5AE /* Build configuration list for PBXProject "Retrode Utility" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
