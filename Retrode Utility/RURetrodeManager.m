@@ -74,7 +74,7 @@ BOOL addDevice(void *refCon, io_service_t usbDevice);
     CFDictionaryRef re1MatchingCriteria = CFBridgingRetain([self RU_retrode1MatchingCriteria]);
     CFDictionaryRef re2MatchingCriteria = CFBridgingRetain([self RU_retrode2MatchingCriteria]);
     CFDictionaryRef dfuMatchingCriteria = CFBridgingRetain([self RU_dfuMatchingCriteria]);
-    notificationPort = IONotificationPortCreate(kIOMasterPortDefault);
+    notificationPort = IONotificationPortCreate(kIOMainPortDefault);
     CFRunLoopSourceRef runLoopSource = IONotificationPortGetRunLoopSource(notificationPort);
     
     runLoop = CFRunLoopGetCurrent();
@@ -155,10 +155,10 @@ void DeviceNotification(void *refCon, io_service_t service, natural_t messageTyp
             if([retrode deviceData] == NULL)
             {
                 // try to recover one last time
-                io_service_t service = IOServiceGetMatchingService(kIOMasterPortDefault, CFBridgingRetain([self RU_retrode2MatchingCriteriaWithLocationID:[retrode locationID]]));
+                io_service_t service = IOServiceGetMatchingService(kIOMainPortDefault, CFBridgingRetain([self RU_retrode2MatchingCriteriaWithLocationID:[retrode locationID]]));
                 if(service == 0)
                 {
-                    service = IOServiceGetMatchingService(kIOMasterPortDefault, CFBridgingRetain([self RU_dfuMatchingCriteriaWithLocationID:[retrode locationID]]));
+                    service = IOServiceGetMatchingService(kIOMainPortDefault, CFBridgingRetain([self RU_dfuMatchingCriteriaWithLocationID:[retrode locationID]]));
                 }
                 if(service == 0)
                 {

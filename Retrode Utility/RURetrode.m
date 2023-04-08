@@ -108,7 +108,7 @@ NSString * const kRUNoBSDDevice    = @"No BSD device";
     {
         // FIXME: set firmware version to "UnkownFirmware" constant
         // then replace with last version that doesn't propagate this later
-        firmwareVersion = @"0.17b";
+        firmwareVersion = @"Unknown";
     }
     else
     {

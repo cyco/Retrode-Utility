@@ -12,11 +12,11 @@
 @end
 @implementation RUSplashWindow
 
-- (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)windowStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)deferCreation
+- (id)initWithContentRect:(NSRect)contentRect styleMask:(NSWindowStyleMask)windowStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)deferCreation
 {
     contentRect.size = (NSSize){469, 178};
     
-    self = [super initWithContentRect:contentRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
+    self = [super initWithContentRect:contentRect styleMask:NSWindowStyleMaskBorderless backing:NSBackingStoreBuffered defer:NO];
     
     if(self != nil)
     {
@@ -30,12 +30,12 @@
     return self;
 }
 
-+ (NSRect)contentRectForFrameRect:(NSRect)fRect styleMask:(NSUInteger)aStyle
++ (NSRect)contentRectForFrameRect:(NSRect)fRect styleMask:(NSWindowStyleMask)aStyle
 {
     return fRect;
 }
 
-+ (NSRect)frameRectForContentRect:(NSRect)cRect styleMask:(NSUInteger)aStyle
++ (NSRect)frameRectForContentRect:(NSRect)cRect styleMask:(NSWindowStyleMask)aStyle
 {
     return cRect;
 }
@@ -101,7 +101,7 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
     [[NSColor clearColor] setFill];
-    NSRectFillUsingOperation([self bounds], NSCompositeClear);
+    NSRectFillUsingOperation([self bounds], NSCompositingOperationClear);
     NSRect    backgroundRect = NSMakeRect(0, 0, 400, [self bounds].size.height-53);
     NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:backgroundRect xRadius:10.0 yRadius:10.0];
     
