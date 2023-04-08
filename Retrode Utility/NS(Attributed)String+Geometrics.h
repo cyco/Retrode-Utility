@@ -5,7 +5,7 @@
  The methods in these @interfaces are typically used to dynamically size
  an NSTextView or NSTextField to fit their strings.  They return the
  ^used^ size, width or height of the given string/attributes, constrained
- by the maximum dimensions passed in the 'width' and 'height' arguments. 
+ by the maximum dimensions passed in the 'width' and 'height' arguments.
  
  * RENDERING IN NSTextView VS. NSTextField
  
@@ -13,10 +13,10 @@
  space between lines than text rendered in an NSTextView.  The total points
  per line is typically 10-20% higher.
  
- Because most apps use NSTextView to render multiline text, using a 
+ Because most apps use NSTextView to render multiline text, using a
  line-wrapped NSTextField looks funny, and obviously it wastes useful
- screen area.  But there are more subtle disadavantages if you wish to 
- estimate the size of the rendered text, typically done in 
+ screen area.  But there are more subtle disadavantages if you wish to
+ estimate the size of the rendered text, typically done in
  order to size the view.
  
  First of all, you cannot get a perfect estimate of the height.
@@ -52,7 +52,7 @@
  Rather than providing a 'typsetterBehavior' argument in each of the methods in
  this category, which would make them really messy just to support a
  discouraged usage, a global variable, gNSStringGeometricsTypesetterBehavior, is
- initialized with the value NSTypesetterLatestBehavior.  This value is 
+ initialized with the value NSTypesetterLatestBehavior.  This value is
  appropriate to estimating height of text to be rendered in an NSTextView.
  This is also the default behavior in NSLayoutManager.
  
@@ -64,17 +64,17 @@
  
  However, if you want to get dimensions of a string as rendered in the
  discouraged NSTextField with line wrapping, set the global variable
- gNSStringGeometricsTypesetterBehavior to 
+ gNSStringGeometricsTypesetterBehavior to
  NSTypesetterBehavior_10_2_WithCompatibility before invoking these methods.
  Invoking any of these methods will automatically set it back to the
  default value of NSTypesetterLatestBehavior.
  
  * ARGUMENTS width and height
  
- In the sizeFor... methods, pass either a width or height which is known to 
+ In the sizeFor... methods, pass either a width or height which is known to
  be larger than the width or height that is required.  Usually, one of these
- should be the "unlimited" value of FLT_MAX.
- If text will be drawn on one line, you may pass FLT_MAX for width.
+ should be the "unlimited" value of CGFLOAT_MAX.
+ If text will be drawn on one line, you may pass CGFLOAT_MAX for width.
  
  * ARGUMENT attributes, NSAttributedString attributes
  
@@ -93,12 +93,12 @@
  "The default font for text that has no font attribute set is 12-pt Helvetica."
  Can't find any official documentation on this, but it seems to be still
  true today, as of Mac OS 10.5.2, for NSTextView.  For NSTextField, however,
- the default font is 12-pt Lucida Grande.  
+ the default font is 12-pt Lucida Grande.
  
  If you pass a nil 'font' argument, these methods will log an error and
  return 0.0.  But if you pass an NSAttributedString with no font attribute
  for a run, these methods will calculate assuming 12-pt regular Helvetica.
-
+ 
  * INTERNAL DESIGN
  
  -[NSAttributedString sizeForWidth:height:] is the primitive workhorse method.
@@ -106,7 +106,7 @@
  Basically, it stuffs your string into an NSTextContainer, stuffs this into
  an NSLayout Manager, and then gets the answer by invoking
  -[NSLayoutManager usedRectForTextContainer:].  The idea is copied from here:
- http://developer.apple.com/documentation/Cocoa/Conceptual/TextLayout/Tasks/StringHeight.html 
+ http://developer.apple.com/documentation/Cocoa/Conceptual/TextLayout/Tasks/StringHeight.html
  
  * AUTHOR
  
@@ -123,36 +123,45 @@
 
 #import <Cocoa/Cocoa.h>
 
-extern int gNSStringGeometricsTypesetterBehavior ;
+extern NSInteger gNSStringGeometricsTypesetterBehavior ;
 
-@interface NSAttributedString (Geometrics) 
+@interface NSAttributedString (Geometrics)
 
 // Measuring Attributed Strings
-- (NSSize)sizeForWidth:(float)width 
-				height:(float)height ;
-- (float)heightForWidth:(float)width ;
-- (float)widthForHeight:(float)height ;
+- (NSSize)sizeForWidth:(CGFloat)width
+                height:(CGFloat)height ;
+- (CGFloat)heightForWidth:(CGFloat)width ;
+- (CGFloat)widthForHeight:(CGFloat)height ;
+
+/*!
+ @brief    Returns a replica of the receiver which will fit into a given width,
+ truncating characters from the end and replacing with an ellipsis if necessary
+ @details  If no truncation is necessary, or if the receiver has less than two
+ characters, returns the receiver (self).
+ */
+- (NSAttributedString*)attributedStringTruncatedToWidth:(CGFloat)width
+                                                 height:(CGFloat)height ;
 
 @end
 
 @interface NSString (Geometrics)
 
 // Measuring a String With Attributes
-- (NSSize)sizeForWidth:(float)width 
-				height:(float)height
-			attributes:(NSDictionary*)attributes ;
-- (float)heightForWidth:(float)width
-			 attributes:(NSDictionary*)attributes ;
-- (float)widthForHeight:(float)height
-			 attributes:(NSDictionary*)attributes ;
+- (NSSize)sizeForWidth:(CGFloat)width
+                height:(CGFloat)height
+            attributes:(NSDictionary*)attributes ;
+- (CGFloat)heightForWidth:(CGFloat)width
+               attributes:(NSDictionary*)attributes ;
+- (CGFloat)widthForHeight:(CGFloat)height
+               attributes:(NSDictionary*)attributes ;
 
 // Measuring a String with a constant Font
-- (NSSize)sizeForWidth:(float)width 
-				height:(float)height
-				  font:(NSFont*)font ;
-- (float)heightForWidth:(float)width
-				   font:(NSFont*)font ;
-- (float)widthForHeight:(float)height
-				   font:(NSFont*)font ;
+- (NSSize)sizeForWidth:(CGFloat)width
+                height:(CGFloat)height
+                  font:(NSFont*)font ;
+- (CGFloat)heightForWidth:(CGFloat)width
+                     font:(NSFont*)font ;
+- (CGFloat)widthForHeight:(CGFloat)height
+                     font:(NSFont*)font ;
 
 @end
