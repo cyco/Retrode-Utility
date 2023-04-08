@@ -28,7 +28,7 @@ const NSInteger kRUFirmwareUpdateErrorNoDFUDevice             = 1008;
 const NSInteger kRUFirmwareUpdateErrorDFUProgrammerFail       = 1009;
 const NSInteger kRUFirmwareUpdateErrorFirmwareNotFonud        = 1010;
 
-#define kRUUpdatePageURLString @"http://www.retrode.org/firmware"
+#define kRUUpdatePageURLString @"https://web.archive.org/web/20210223035701/http%3a//www.retrode.org/documentation/firmware/"
 
 #pragma mark -
 @interface RUFirmware ()

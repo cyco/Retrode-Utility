@@ -27,15 +27,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>retrode.org</key>
-			<string>retrode.org</string>
-		</dict>
-	</dict>
+	<dict/>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2012-2016 Christoph Leimbrock. All rights reserved.</string>
 	<key>NSMainNibFile</key>
