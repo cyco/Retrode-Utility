@@ -255,8 +255,9 @@
 		8375A1FF1615DB4A004FA5AE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				CLASSPREFIX = RU;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "Christoph Leimbrock";
 			};
 			buildConfigurationList = 8375A2021615DB4A004FA5AE /* Build configuration list for PBXProject "Retrode Utility" */;
