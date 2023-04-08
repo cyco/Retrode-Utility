@@ -76,7 +76,7 @@ const NSInteger kRUFirmwareUpdateErrorFirmwareNotFonud        = 1010;
     }
 
     NSArray *releaseNodes = [document nodesForXPath:@"/html/body/div/div/table/tr[2]/td[2]/div/div[2]/pre" error:outError];
-    if(releaseNodes == nil)
+    if(releaseNodes == nil || releaseNodes.count == 0)
     {
         DLog(@"Could not get release notes.");
         DLog(@"%@", outError!=NULL?*outError:nil);

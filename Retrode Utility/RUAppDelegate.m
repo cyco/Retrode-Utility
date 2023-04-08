@@ -91,8 +91,9 @@ NSString * const kRUCopyFileToRetrodeNotificationName = @"kRUCopyFileToRetrodeNo
 - (IBAction)installCustomFirmware:(id)sender {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     [panel setAllowsMultipleSelection:NO];
-    [panel setAllowedFileTypes:@[@"hex"]];
-    if([panel runModal] != NSFileHandlingPanelOKButton) {
+    [panel setAllowedContentTypes:@[[UTType typeWithFilenameExtension:@"hex"
+                                                     conformingToType:UTTypeData]]];
+    if([panel runModal] != NSModalResponseOK) {
         [[self firmwareButton] selectItemAtIndex:0];
         [sender setRepresentedObject:nil];
         return;
@@ -142,21 +143,22 @@ NSString * const kRUCopyFileToRetrodeNotificationName = @"kRUCopyFileToRetrodeNo
         [[self firmwareButton] setEnabled:NO];
         [[self firmwareButton] selectItemAtIndex:0];
         [[[self firmwareButton] itemAtIndex:0] setEnabled:NO];
-        return;
     }
-    NSArray *suitableFirmwareVersions  = [availableFirmwareVersions filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(RUFirmware *evaluatedObject, NSDictionary *bindings) {
-        return [[evaluatedObject deviceVersion] isEqualTo:[retrode deviceVersion]];
-    }]];
-    
-    [suitableFirmwareVersions enumerateObjectsUsingBlock:^(RUFirmware *obj, NSUInteger idx, BOOL *stop) {
-        NSMenuItem *item = [[NSMenuItem alloc] init];
-        [item setTitle:[obj version]];
-        [item setRepresentedObject:obj];
-        [item setEnabled:YES];
+    else
+    {
+        NSArray *suitableFirmwareVersions  = [availableFirmwareVersions filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(RUFirmware *evaluatedObject, NSDictionary *bindings) {
+            return [[evaluatedObject deviceVersion] isEqualTo:[retrode deviceVersion]];
+        }]];
         
-        [itemMenu addItem:item];
-    }];
-
+        [suitableFirmwareVersions enumerateObjectsUsingBlock:^(RUFirmware *obj, NSUInteger idx, BOOL *stop) {
+            NSMenuItem *item = [[NSMenuItem alloc] init];
+            [item setTitle:[obj version]];
+            [item setRepresentedObject:obj];
+            [item setEnabled:YES];
+            
+            [itemMenu addItem:item];
+        }];
+    }
     [itemMenu addItem:[NSMenuItem separatorItem]];
     NSMenuItem *customFirmwareItem = [[NSMenuItem alloc] initWithTitle:@"Custom firmware…" action:@selector(installCustomFirmware:) keyEquivalent:@""];
     [itemMenu addItem:customFirmwareItem];
@@ -457,7 +459,7 @@ NSString * const kRUCopyFileToRetrodeNotificationName = @"kRUCopyFileToRetrodeNo
 - (void)drawerDidClose:(NSNotification *)notification
 {
     if([notification object] == [self configDrawer])
-        [[self configButton] setState:NSOffState];
+        [[self configButton] setState:NSControlStateValueOff];
     else if([notification object] == [self firmwareDrawer])
     {
         [[self firmwareButton] selectItemAtIndex:0];

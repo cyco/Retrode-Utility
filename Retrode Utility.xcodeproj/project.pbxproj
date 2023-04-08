@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07B512BF29E1414B00FD306F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8375A2111615DB4A004FA5AE /* Foundation.framework */; };
+		07B512C029E1419200FD306F /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8375A20F1615DB4A004FA5AE /* AppKit.framework */; };
+		07B512C229E141C400FD306F /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B512C129E141BE00FD306F /* UniformTypeIdentifiers.framework */; };
 		830C011716172907007BEF28 /* NSString+NSRangeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 830C011616172907007BEF28 /* NSString+NSRangeAdditions.m */; };
 		830C011A16173C57007BEF28 /* RUFirmwareUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 830C011916173C57007BEF28 /* RUFirmwareUpdater.m */; };
 		8317DD621621990E00EDEFF3 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317DD611621990E00EDEFF3 /* Quartz.framework */; };
@@ -28,11 +31,10 @@
 		837B69E0161EE649003B93D9 /* RUSplashWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 837B69DF161EE649003B93D9 /* RUSplashWindow.m */; };
 		837B69E4161EEE4F003B93D9 /* Retrode 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 837B69E3161EEE4F003B93D9 /* Retrode 2.png */; };
 		8396086B162235E700FE6EDE /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8396086A162235E700FE6EDE /* Sparkle.framework */; };
-		8396086D162235EF00FE6EDE /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8396086A162235E700FE6EDE /* Sparkle.framework */; };
+		8396086D162235EF00FE6EDE /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8396086A162235E700FE6EDE /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		839F22EF1625803400C06D56 /* fileSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 839F22EE1625803400C06D56 /* fileSelectionViewController.xib */; };
 		83B47A1B16230839001C7D13 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 83B47A1A16230839001C7D13 /* Credits.rtf */; };
 		83C888891620C919006FF1E0 /* NS(Attributed)String+Geometrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C888881620C919006FF1E0 /* NS(Attributed)String+Geometrics.m */; };
-		83DD9DB01D1FD12300EA5C35 /* libusb-0.1.4.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 83DD9DAE1D1FD12000EA5C35 /* libusb-0.1.4.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +51,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		07B512BE29E0F7E500FD306F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		07B512C129E141BE00FD306F /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = DEVELOPER_DIR; };
 		830C010E16171D90007BEF28 /* RURetrode_Configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RURetrode_Configuration.h; sourceTree = "<group>"; };
 		830C011516172907007BEF28 /* NSString+NSRangeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSRangeAdditions.h"; sourceTree = "<group>"; };
 		830C011616172907007BEF28 /* NSString+NSRangeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSRangeAdditions.m"; sourceTree = "<group>"; };
@@ -77,7 +81,6 @@
 		8375A21A1615DB4A004FA5AE /* RetrodeUtility-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RetrodeUtility-Prefix.pch"; sourceTree = "<group>"; };
 		8375A21E1615DB4A004FA5AE /* RUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUAppDelegate.h; sourceTree = "<group>"; };
 		8375A21F1615DB4A004FA5AE /* RUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUAppDelegate.m; sourceTree = "<group>"; };
-		8375A2221615DB4A004FA5AE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8375A2291615DB60004FA5AE /* RURetrodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RURetrodeManager.h; sourceTree = "<group>"; };
 		8375A22A1615DB60004FA5AE /* RURetrodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RURetrodeManager.m; sourceTree = "<group>"; };
 		8375A22C1615DB8C004FA5AE /* RURetrode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RURetrode.h; sourceTree = "<group>"; };
@@ -91,7 +94,6 @@
 		83B47A1A16230839001C7D13 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		83C888871620C919006FF1E0 /* NS(Attributed)String+Geometrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NS(Attributed)String+Geometrics.h"; sourceTree = "<group>"; };
 		83C888881620C919006FF1E0 /* NS(Attributed)String+Geometrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NS(Attributed)String+Geometrics.m"; sourceTree = "<group>"; };
-		83DD9DAE1D1FD12000EA5C35 /* libusb-0.1.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libusb-0.1.4.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +101,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07B512C229E141C400FD306F /* UniformTypeIdentifiers.framework in Frameworks */,
+				07B512C029E1419200FD306F /* AppKit.framework in Frameworks */,
 				8317DD621621990E00EDEFF3 /* Quartz.framework in Frameworks */,
+				07B512BF29E1414B00FD306F /* Foundation.framework in Frameworks */,
 				8356A2C41616603900377E4B /* DiskArbitration.framework in Frameworks */,
 				8375A2341615E09E004FA5AE /* IOKit.framework in Frameworks */,
 				8375A20D1615DB4A004FA5AE /* Cocoa.framework in Frameworks */,
@@ -157,6 +162,7 @@
 				8356A2C31616603900377E4B /* DiskArbitration.framework */,
 				8375A2331615E09E004FA5AE /* IOKit.framework */,
 				8375A20C1615DB4A004FA5AE /* Cocoa.framework */,
+				07B512C129E141BE00FD306F /* UniformTypeIdentifiers.framework */,
 				8375A20E1615DB4A004FA5AE /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -191,7 +197,6 @@
 		8375A2131615DB4A004FA5AE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				83DD9DAE1D1FD12000EA5C35 /* libusb-0.1.4.dylib */,
 				839F22EE1625803400C06D56 /* fileSelectionViewController.xib */,
 				8371684C162351FB004D3B10 /* libusb-1.0.0.dylib */,
 				8371684A16234EB4004D3B10 /* Retrode 2@2x.png */,
@@ -252,15 +257,16 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = RU;
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = "Christoph Leimbrock";
 			};
 			buildConfigurationList = 8375A2021615DB4A004FA5AE /* Build configuration list for PBXProject "Retrode Utility" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 8375A1FD1615DB4A004FA5AE;
 			productRefGroup = 8375A2091615DB4A004FA5AE /* Products */;
@@ -278,7 +284,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8371684E16235224004D3B10 /* libusb-1.0.0.dylib in Resources */,
-				83DD9DB01D1FD12300EA5C35 /* libusb-0.1.4.dylib in Resources */,
 				8375A2171615DB4A004FA5AE /* InfoPlist.strings in Resources */,
 				8375A2231615DB4A004FA5AE /* MainMenu.xib in Resources */,
 				83515AA4161E4301009ADF10 /* dfu-programmer in Resources */,
@@ -295,6 +300,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		8371684F1623522C004D3B10 /* Relink DFU-Programmer */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -305,7 +311,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "ABS_PATH=\"/usr/local/opt/libusb/lib/libusb-1.0.0.dylib\"\nREL_PATH=\"@executable_path/../Resources/libusb-1.0.0.dylib\"\n\ninstall_name_tool -change \"$ABS_PATH\" \"$REL_PATH\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION/Contents/Resources/dfu-programmer\"";
+			shellScript = "ABS_PATH=\"/usr/local/opt/libusb/lib/libusb-1.0.0.dylib\"\nREL_PATH=\"@executable_path/../Resources/libusb-1.0.0.dylib\"\n\ninstall_name_tool -change \"$ABS_PATH\" \"$REL_PATH\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION/Contents/Resources/dfu-programmer\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -341,7 +347,7 @@
 		8375A2211615DB4A004FA5AE /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8375A2221615DB4A004FA5AE /* en */,
+				07B512BE29E0F7E500FD306F /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -353,16 +359,36 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -371,9 +397,11 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -383,21 +411,42 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -405,7 +454,9 @@
 		8375A2271615DB4A004FA5AE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -417,12 +468,15 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Retrode Utility/RetrodeUtility-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST))",
+					"@loader_path/../Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Retrode Utility\"",
-					"$(PROJECT_DIR)/Retrode",
-					Utility,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ccl.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPARKLE_PRIVATE_KEY_PATH = "$PROJECT_DIR/../Signing Tools/dsa_priv.pem";
 				SPARKLE_SIGN_UPDATE_SCRIPT = "$PROJECT_DIR/../Signing Tools/sign_update.rb";
@@ -433,7 +487,9 @@
 		8375A2281615DB4A004FA5AE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -441,12 +497,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retrode Utility/RetrodeUtility-Prefix.pch";
 				INFOPLIST_FILE = "Retrode Utility/RetrodeUtility-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST))",
+					"@loader_path/../Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Retrode Utility\"",
-					"$(PROJECT_DIR)/Retrode",
-					Utility,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ccl.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPARKLE_PRIVATE_KEY_PATH = "$PROJECT_DIR/../Signing Tools/dsa_priv.pem";
 				SPARKLE_SIGN_UPDATE_SCRIPT = "$PROJECT_DIR/../Signing Tools/sign_update.rb";

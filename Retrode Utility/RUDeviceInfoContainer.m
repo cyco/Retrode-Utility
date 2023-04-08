@@ -51,7 +51,7 @@
     if(object == self && [keyPath isEqualToString:@"hidden"])
     {
         if(![self isHidden])
-            [self registerForDraggedTypes:@[NSURLPboardType]];
+            [self registerForDraggedTypes:@[NSPasteboardTypeURL]];
         else
         {
             [self unregisterDraggedTypes];
@@ -78,7 +78,7 @@
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender
 {
     NSPasteboard *pboard = [sender draggingPasteboard];
-    if ([[pboard types] containsObject:NSURLPboardType]) {
+    if ([[pboard types] containsObject:NSPasteboardTypeURL]) {
         NSURL *fileURL = [NSURL URLFromPasteboard:pboard];
         [[NSNotificationCenter defaultCenter] postNotificationName:kRUCopyFileToRetrodeNotificationName object:fileURL];
     }
@@ -97,7 +97,7 @@
     // For dragging to be valid we need a .srm file that is not already on the retrode
     // also the retrode hardware has to be available mounted
     
-    RUAppDelegate *appDelegate = [NSApp delegate];
+    RUAppDelegate *appDelegate = (RUAppDelegate*)[NSApp delegate];
     RURetrode     *retrode     = [appDelegate currentRetrode];
     
     if([retrode mountPath] == nil) LogAndReturn(NO, @"not mounted"); // make sure retrode is mounted
