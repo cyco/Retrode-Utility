@@ -29,7 +29,6 @@
 		830C011A16173C57007BEF28 /* RUFirmwareUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 830C011916173C57007BEF28 /* RUFirmwareUpdater.m */; };
 		8317DD621621990E00EDEFF3 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8317DD611621990E00EDEFF3 /* Quartz.framework */; };
 		83333FCD29E15C4500DABA64 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 83333FCC29E15C4500DABA64 /* Sparkle */; };
-		83333FFD29E162E400DABA64 /* libusb-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 83333FDD29E161AD00DABA64 /* libusb-1.0.0.dylib */; };
 		8333400E29E168B300DABA64 /* libusb-1.0.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 8333400D29E168B300DABA64 /* libusb-1.0.0.dylib */; };
 		83515AA4161E4301009ADF10 /* dfu-programmer in Resources */ = {isa = PBXBuildFile; fileRef = 83515AA3161E4301009ADF10 /* dfu-programmer */; };
 		8356A2C41616603900377E4B /* DiskArbitration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8356A2C31616603900377E4B /* DiskArbitration.framework */; };
@@ -123,13 +122,6 @@
 			remoteGlobalIDString = 008FBFBD1628B9FE00BC5BE2;
 			remoteInfo = xusb;
 		};
-		83333FF029E161C000DABA64 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83333FCE29E161AD00DABA64 /* libusb.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 008FBF301628B79300BC5BE2;
-			remoteInfo = libusb;
-		};
 		8333400829E1639F00DABA64 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83333FCE29E161AD00DABA64 /* libusb.xcodeproj */;
@@ -209,7 +201,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83333FFD29E162E400DABA64 /* libusb-1.0.0.dylib in Frameworks */,
 				83333FCD29E15C4500DABA64 /* Sparkle in Frameworks */,
 				07B512C229E141C400FD306F /* UniformTypeIdentifiers.framework in Frameworks */,
 				07B512C029E1419200FD306F /* AppKit.framework in Frameworks */,
@@ -371,7 +362,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				83333FF129E161C000DABA64 /* PBXTargetDependency */,
 				8333400C29E1688900DABA64 /* PBXTargetDependency */,
 			);
 			name = "Retrode Utility";
@@ -534,7 +524,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\nlibusb_path=\"$(find \"${SDK_STAT_CACHE_DIR}/libusb\"* -name 'libusb-1.0.0.dylib' -type f -print0 | xargs -0 ls -tl|head -n 1|awk '{print $NF}')\"\n\n\ncp \"${libusb_path}\" \"${PROJECT_DIR}/Retrode Utility/libusb-1.0.0.dylib\"\n\n";
+			shellScript = "cp \"${BUILT_PRODUCTS_DIR}/libusb-1.0.0.dylib\" \"${PROJECT_DIR}/Retrode Utility/libusb-1.0.0.dylib\"\n\n";
 		};
 		8371684F1623522C004D3B10 /* Relink DFU-Programmer */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -574,11 +564,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		83333FF129E161C000DABA64 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = libusb;
-			targetProxy = 83333FF029E161C000DABA64 /* PBXContainerItemProxy */;
-		};
 		8333400929E1639F00DABA64 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = libusb;
